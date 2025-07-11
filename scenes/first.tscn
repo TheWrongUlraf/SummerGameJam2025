@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bktmqfbqtxv0"]
+
+[ext_resource type="Texture2D" uid="uid://csg5i8r0glb3o" path="res://assets/art/icon2025.png" id="1_vr3ni"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.945098, 0.917647, 0.831373, 1)
+
+[node name="Icon2025" type="Sprite2D" parent="."]
+position = Vector2(540, 654)
+scale = Vector2(2, 2)
+texture = ExtResource("1_vr3ni")
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 240.0
+offset_bottom = 760.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.156863, 0.705882, 0.811765, 1)
+theme_override_colors/font_outline_color = Color(0.0235294, 0.223529, 0.47451, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/normal_font_size = 190
+text = "Welcome
+2025 Crew!
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
