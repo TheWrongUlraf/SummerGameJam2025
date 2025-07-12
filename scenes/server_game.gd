@@ -92,6 +92,10 @@ func on_emoji_placed(player_id):
 	if players.has(player_id):
 		players.get(player_id).last_placed_emoji_time = Time.get_unix_time_from_system()
 
+func nitro_boost_activated(player_id: int):
+	audio.stream = load("res://assets/sounds/nitro_boost.ogg")
+	audio.play()
+
 func _process(delta: float) -> void:
 	for player_id in players:
 		var player : PlayerInfo = players[player_id]

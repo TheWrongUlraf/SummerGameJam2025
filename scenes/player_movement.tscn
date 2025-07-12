@@ -50,20 +50,6 @@ text = "Reveal!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-offset = Vector2(550, 180)
-scale = Vector2(0.3, 0.3)
-transform = Transform2D(0.3, 0, 0, 0.3, 550, 180)
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="InGameHud" parent="CanvasLayer/Control" instance=ExtResource("7_5vuae")]
-layout_mode = 1
-
 [node name="NitroBoost" type="Sprite2D" parent="Camera2D"]
 modulate = Color(0.911971, 0.694306, 0.363181, 1)
 position = Vector2(765.063, -424.063)
@@ -83,6 +69,19 @@ text = "Nitro boost!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(550, 180)
+scale = Vector2(0.3, 0.3)
+transform = Transform2D(0.3, 0, 0, 0.3, 550, 180)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InGameHud" parent="CanvasLayer/Control" instance=ExtResource("7_5vuae")]
+layout_mode = 1
 
 [connection signal="on_pressed" from="Camera2D/RevealButton" to="Camera2D/RevealButton" method="_on_reveal_clicked"]
 [connection signal="on_pressed" from="Camera2D/NitroBoost" to="Camera2D/NitroBoost" method="_on_nitro_clicked"]
