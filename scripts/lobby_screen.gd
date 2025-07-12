@@ -34,6 +34,7 @@ func _on_connect_button_pressed() -> void:
 
 func _on_start_game_debug_button_pressed() -> void:
 	Lobby.start_game.rpc()
+	Lobby.change_to_game_scene()
 
 
 func _client_on_connected():

@@ -9,6 +9,8 @@ var players_in_lobby = Array()
 
 var is_server_cached = -1
 
+var game_scene = null
+
 signal server_on_player_number_updated
 
 signal client_on_connected
@@ -141,9 +143,25 @@ func disconnect_from_server():
 func get_players_in_the_lobby_num():
 	return len(players_in_lobby)
 
+func change_to_game_scene():
+	get_tree().change_scene_to_file("res://scenes/server_game.tscn")
+	await get_tree().create_timer(0).timeout
+	game_scene = get_tree().current_scene
 
 @rpc("authority", "call_remote", "reliable")
 func start_game():
 	if is_server():
 		printerr("We never call this on the server duh!")
 	client_on_game_started.emit()
+
+@rpc("any_peer", "call_remote", "unreliable_ordered")
+func update_position(pos: Vector2):
+	if not is_server():
+		printerr("We never call this on the client duh!")
+		
+	if game_scene == null:
+		printerr("Server not ready!")
+	else:
+		var sender_id = multiplayer.get_remote_sender_id()
+		game_scene.update_player_position(sender_id, pos)
+	

@@ -30,6 +30,8 @@ func _process(delta: float) -> void:
 
 	if map_bounds.encloses(normalized_viewport):
 		camera.global_position = target_camera_pos
+		
+	Lobby.update_position.rpc(global_position)
 
 func _input(event):
 	if event is InputEventMouseButton:
