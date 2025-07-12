@@ -1,5 +1,4 @@
 extends Node2D
-
 var emoji_scene = preload("res://objects/map_emoji.tscn")
 
 func _ready():
@@ -9,4 +8,5 @@ func _ready():
 func _on_player_put_emoji(location, index):
 	var new_emoji = emoji_scene.instantiate()
 	new_emoji.position = location
+	new_emoji.emoji_index = index
 	$Emojis.add_child(new_emoji)

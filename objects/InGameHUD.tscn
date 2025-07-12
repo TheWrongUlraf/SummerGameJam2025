@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd521iwor8mwl"]
+[gd_scene load_steps=5 format=3 uid="uid://bd521iwor8mwl"]
 
 [ext_resource type="Script" uid="uid://et7sotnt142g" path="res://scripts/in_game_hud.gd" id="1_ay5hx"]
 [ext_resource type="PackedScene" uid="uid://cqqyraf663xg3" path="res://objects/ability_button.tscn" id="1_lwrg5"]
 [ext_resource type="Texture2D" uid="uid://bavxd6qmhd03i" path="res://assets/art/point.png" id="2_dflql"]
+[ext_resource type="Texture2D" uid="uid://cx4xhll6f8ri6" path="res://assets/art/buildings/House_01.png" id="4_8q1ka"]
 
 [node name="InGameHud" type="Control"]
 layout_mode = 3
@@ -32,18 +33,37 @@ grow_vertical = 2
 alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RebelHud/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HSeparator" type="HSeparator" parent="RebelHud/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="Emoji1Button" parent="RebelHud/HBoxContainer/VBoxContainer" instance=ExtResource("1_lwrg5")]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
 texture = ExtResource("2_dflql")
+expand_mode = 2
 
 [node name="Emoji2Button" parent="RebelHud/HBoxContainer/VBoxContainer" instance=ExtResource("1_lwrg5")]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+expand_mode = 2
 
 [node name="Emoji3Button" parent="RebelHud/HBoxContainer/VBoxContainer" instance=ExtResource("1_lwrg5")]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource("4_8q1ka")
+expand_mode = 2
 
 [node name="EmojiCooldownTimer" type="Timer" parent="."]
 

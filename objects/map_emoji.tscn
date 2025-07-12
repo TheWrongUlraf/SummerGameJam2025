@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://msxf0e58g8sp"]
+[gd_scene load_steps=3 format=3 uid="uid://msxf0e58g8sp"]
 
 [ext_resource type="Texture2D" uid="uid://csg5i8r0glb3o" path="res://assets/art/icon2025.png" id="1_r1gts"]
+[ext_resource type="Script" uid="uid://dy6tksuf3bhxp" path="res://objects/map_emoji.gd" id="1_ywkcv"]
 
 [node name="MapEmoji" type="Node2D"]
+script = ExtResource("1_ywkcv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.375, 0.375)
 texture = ExtResource("1_r1gts")
