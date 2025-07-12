@@ -210,7 +210,7 @@ func _start_game(role):
 		printerr("We never call this on the server duh!")
 	_client_role = role
 	print("Client role: " + str(_client_role))
-	client_on_game_started.emit(role)
+	client_on_game_started.emit()
 
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")
