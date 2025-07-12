@@ -6,6 +6,7 @@ func _ready():
 		return
 	for emoji in Lobby.scheduled_emojis:
 		_on_player_put_emoji(emoji.Pos, emoji.Idx, emoji.EmojiTime)
+	Lobby.scheduled_emojis.clear()
 	Lobby.client_on_player_put_emoji.connect(_on_player_put_emoji)
 
 
