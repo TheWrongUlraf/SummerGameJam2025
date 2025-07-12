@@ -24,6 +24,7 @@ ClientPlayer="*res://scripts/client_player.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/initial_position=Vector2i(0, 100)
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/stretch/scale=3.0

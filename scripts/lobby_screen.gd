@@ -73,6 +73,7 @@ func _client_on_connection_error():
 
 
 func _client_on_game_started(role: int, starting_position: Vector2):
+	ClientPlayer.role = role
 	ClientPlayer.player_pos = starting_position
 	get_tree().change_scene_to_file("res://scenes/player_movement.tscn")
 

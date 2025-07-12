@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://doc0rv6v4j8ig"]
+
+[node name="RebelsWin" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 333.0
+offset_bottom = 220.0
+theme_override_font_sizes/normal_font_size = 50
+text = "Police win!"

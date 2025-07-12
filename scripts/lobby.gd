@@ -186,6 +186,16 @@ func _start_game(role, player_name, starting_position):
 	_client_name = player_name
 	print("Client role: " + str(_client_role))
 	client_on_game_started.emit(role, starting_position)
+	
+@rpc("authority", "call_remote", "reliable")
+func _team_wins(role: int):
+	if is_server():
+		printerr("We never call this on the server duh!")
+	if role == ROLE_POLICE:
+		get_tree().change_scene_to_file("res://scenes/PoliceWin.tscn")
+	elif role == ROLE_REBEL:
+		get_tree().change_scene_to_file("res://scenes/RebelsWin.tscn")
+	# todo change scene
 
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")
@@ -200,6 +210,18 @@ func update_position(pos: Vector2):
 		var sender_id = multiplayer.get_remote_sender_id()
 		game_scene.update_player_position(sender_id, pos)
 
+@rpc("any_peer", "call_remote", "reliable")
+func reveal():
+	if not is_server():
+		printerr("We never call this on the client duh!")
+		return
+		
+	if game_scene == null:
+		printerr("Server not ready!")
+	else:
+		var sender_id = multiplayer.get_remote_sender_id()
+		game_scene.reveal(sender_id)
+	
 
 func get_player_info(id):
 	for player in players_in_lobby:
@@ -215,3 +237,10 @@ func client_get_role():
 
 func get_client_name():
 	return _client_name
+	
+func team_wins(role: int):
+	for i in range(0, len(players_in_lobby)):
+		var player = Lobby.players_in_lobby[i]
+		var player_info = (player as LobbyPlayerInfo)
+		Lobby._team_wins.rpc_id(player_info.Id, role)
+		

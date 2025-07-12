@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://isvo3q10tf08"]
+[gd_scene load_steps=8 format=3 uid="uid://isvo3q10tf08"]
 
 [ext_resource type="Texture2D" uid="uid://bavxd6qmhd03i" path="res://assets/art/point.png" id="1_7wc8n"]
+[ext_resource type="Script" uid="uid://dwibxfsqporcu" path="res://scripts/player_movement.gd" id="1_dlsem"]
 [ext_resource type="PackedScene" uid="uid://do2818u4a86j5" path="res://objects/map.tscn" id="1_tn4kn"]
 [ext_resource type="Script" uid="uid://mpe2vbqnpdol" path="res://scripts/player_point.gd" id="3_tn4kn"]
+[ext_resource type="Script" uid="uid://da2tg6mt1yotk" path="res://scripts/button.gd" id="4_7ybod"]
+[ext_resource type="Texture2D" uid="uid://be2rcqygqcwu7" path="res://assets/art/button.png" id="4_fhu7s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tn4kn"]
 radius = 15.5081
 
 [node name="Node2D2" type="Node2D"]
+script = ExtResource("1_dlsem")
 
 [node name="Map" parent="." instance=ExtResource("1_tn4kn")]
 
@@ -23,3 +27,13 @@ shape = SubResource("CircleShape2D_tn4kn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(281, -196)
+
+[node name="RevealButton" type="Sprite2D" parent="Camera2D"]
+modulate = Color(0.53654, 0.787091, 0.823788, 1)
+position = Vector2(269, -123)
+scale = Vector2(0.324219, 0.324219)
+texture = ExtResource("4_fhu7s")
+region_rect = Rect2(1, 0, 20, 20)
+script = ExtResource("4_7ybod")
+
+[connection signal="on_pressed" from="Camera2D/RevealButton" to="Camera2D/RevealButton" method="_on_reveal_clicked"]
