@@ -23,6 +23,7 @@ signal client_on_connected
 signal client_on_connection_error
 signal client_on_disconnected
 signal client_on_game_started
+signal client_on_player_put_emoji
 
 class LobbyPlayerInfo:
 	var Id: int
@@ -222,6 +223,21 @@ func reveal():
 		var sender_id = multiplayer.get_remote_sender_id()
 		game_scene.reveal(sender_id)
 	
+
+@rpc("any_peer", "call_remote", "reliable")
+func server_place_emoji_on_map(sender_id, index):
+	if game_scene == null:
+		return
+
+	if game_scene.can_player_place_emoji(sender_id):
+		_client_place_emoji_on_map.rpc(game_scene.get_player_position(sender_id), index)
+		game_scene.on_emoji_placed(sender_id)
+
+
+@rpc("call_remote", "reliable")
+func _client_place_emoji_on_map(position, index):
+	client_on_player_put_emoji.emit(position, index)
+
 
 func get_player_info(id):
 	for player in players_in_lobby:

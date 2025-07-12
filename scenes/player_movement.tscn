@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://isvo3q10tf08"]
+[gd_scene load_steps=9 format=3 uid="uid://isvo3q10tf08"]
 
 [ext_resource type="Texture2D" uid="uid://bavxd6qmhd03i" path="res://assets/art/point.png" id="1_7wc8n"]
 [ext_resource type="Script" uid="uid://dwibxfsqporcu" path="res://scripts/player_movement.gd" id="1_dlsem"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://mpe2vbqnpdol" path="res://scripts/player_point.gd" id="3_tn4kn"]
 [ext_resource type="Script" uid="uid://da2tg6mt1yotk" path="res://scripts/button.gd" id="4_7ybod"]
 [ext_resource type="Texture2D" uid="uid://be2rcqygqcwu7" path="res://assets/art/button.png" id="4_fhu7s"]
+[ext_resource type="PackedScene" uid="uid://bd521iwor8mwl" path="res://objects/InGameHUD.tscn" id="7_5vuae"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tn4kn"]
 radius = 15.5081
@@ -48,5 +49,19 @@ theme_override_font_sizes/normal_font_size = 55
 text = "Reveal!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(550, 180)
+scale = Vector2(0.3, 0.3)
+transform = Transform2D(0.3, 0, 0, 0.3, 550, 180)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InGameHud" parent="CanvasLayer/Control" instance=ExtResource("7_5vuae")]
+layout_mode = 1
 
 [connection signal="on_pressed" from="Camera2D/RevealButton" to="Camera2D/RevealButton" method="_on_reveal_clicked"]

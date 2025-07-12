@@ -78,6 +78,20 @@ func reveal(player_id: int):
 		Lobby.team_wins(Lobby.ROLE_REBEL)
 	
 
+func get_player_position(player_id):
+	if players.has(player_id):
+		return players.get(player_id).player_node.position
+	return Vector2(0.0 ,0.0)
+
+func can_player_place_emoji(player_id):
+	if players.has(player_id):
+		return players.get(player_id).last_placed_emoji_time + 10.0 > Time.get_unix_time_from_system()
+	return false
+
+func on_emoji_placed(player_id):
+	if players.has(player_id):
+		players.get(player_id).last_placed_emoji_time = Time.get_unix_time_from_system()
+
 func _process(delta: float) -> void:
 	for player_id in players:
 		var player : PlayerInfo = players[player_id]
@@ -90,7 +104,7 @@ func _process(delta: float) -> void:
 					player.caught = true
 					Lobby.team_wins(Lobby.ROLE_POLICE)
 	update_visuals()
-	
+
 func update_visuals():
 	for player_id in players:
 		var player : PlayerInfo = players[player_id]

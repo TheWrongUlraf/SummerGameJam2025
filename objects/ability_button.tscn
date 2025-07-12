@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqqyraf663xg3"]
+
+[ext_resource type="Texture2D" uid="uid://csg5i8r0glb3o" path="res://assets/art/icon2025.png" id="1_qbmu0"]
+[ext_resource type="Script" uid="uid://cxucwk11l13tm" path="res://scripts/ability_button.gd" id="2_kxll0"]
+
+[node name="AbilityButton" type="TextureRect"]
+texture = ExtResource("1_qbmu0")
+script = ExtResource("2_kxll0")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -43,13 +43,13 @@ func _physics_process(_delta: float) -> void:
 
 	var normalized_viewport := get_viewport().get_canvas_transform().affine_inverse()*get_viewport_rect()
 	normalized_viewport.position = target_camera_pos - normalized_viewport.size/2
-	var map_half_width = 5000 / 2
-	var map_half_height = 5000 / 2
+	var map_half_width = 5000 / 2.0
+	var map_half_height = 5000 / 2.0
 	
 	target_camera_pos.x = clamp(
 		target_camera_pos.x,
-		map.position.x - map_half_width,
-		map.position.x + map_half_width
+		map.position.x - int(map_half_width),
+		map.position.x + int(map_half_width)
 	)
 	target_camera_pos.y = clamp(
 		target_camera_pos.y,

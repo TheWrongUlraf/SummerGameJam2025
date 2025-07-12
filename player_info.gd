@@ -7,13 +7,14 @@ var role: int
 var caught: bool = false
 var reveal_cooldown: float = 0
 var name:= "N/A"
+var last_placed_emoji_time: float = 0.0
 
 func _init(_player_id: int, _player_node: Node2D, _role: int, _name: String):
 	player_id = _player_id
 	player_node = _player_node
 	role = _role
 	name = _name
-	
+
 	
 func _process(delta: float):
 	if reveal_cooldown > 0:

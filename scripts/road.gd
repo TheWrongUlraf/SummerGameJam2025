@@ -29,7 +29,7 @@ var _rotation_internal := Rotation.R0
 		return _rotation_internal
 
 func get_enum_name(value: int) -> String:
-	for name in RoadType.keys():
-		if RoadType[name] == value:
-			return name
+	for player_name in RoadType.keys():
+		if RoadType[player_name] == value:
+			return player_name
 	return "Unknown"
