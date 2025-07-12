@@ -298,6 +298,10 @@ func client_get_role():
 func get_client_name():
 	return _client_name
 
+func is_connected_to_server():
+	# if we have a role assigned, we are surely initilized, suuurely..
+	return _client_role != ROLE_RANDOM
+
 func team_wins(role: int):
 	for i in range(0, len(players_in_lobby)):
 		var player = Lobby.players_in_lobby[i]

@@ -31,9 +31,14 @@ func _ready():
 		Lobby.client_on_disconnected.connect(_client_on_disconnected)
 		Lobby.client_on_game_started.connect(_client_on_game_started)
 
-		$VerticalBox/ClientControls/NotConnected/NameEdit.text = PredefinedAdjectives.pick_random() + " " + PredefinedNouns.pick_random()
-
-		Lobby.client_is_initialized()
+		if $VerticalBox/ClientControls/NotConnected/NameEdit.text.is_empty():
+			$VerticalBox/ClientControls/NotConnected/NameEdit.text = PredefinedAdjectives.pick_random() + " " + PredefinedNouns.pick_random()
+		
+		if Lobby.is_connected_to_server():
+			$VerticalBox/ClientControls/NotConnected.hide()
+			$VerticalBox/ClientControls/Connected.show()
+		else:
+			Lobby.client_is_initialized()
 
 
 func _on_number_updated():
