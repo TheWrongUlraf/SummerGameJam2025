@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Node2D
 
 var emoji_scene = preload("res://objects/map_emoji.tscn")
 

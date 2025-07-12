@@ -85,7 +85,7 @@ func get_player_position(player_id):
 
 func can_player_place_emoji(player_id):
 	if players.has(player_id):
-		return players.get(player_id).last_placed_emoji_time + 10.0 > Time.get_unix_time_from_system()
+		return players.get(player_id).last_placed_emoji_time + 10.0 < Time.get_unix_time_from_system()
 	return false
 
 func on_emoji_placed(player_id):

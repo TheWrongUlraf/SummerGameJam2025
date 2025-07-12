@@ -187,7 +187,8 @@ func _start_game(role, player_name, starting_position):
 	_client_name = player_name
 	print("Client role: " + str(_client_role))
 	client_on_game_started.emit(role, starting_position)
-	
+
+
 @rpc("authority", "call_remote", "reliable")
 func _team_wins(role: int):
 	if is_server():
@@ -211,6 +212,7 @@ func update_position(pos: Vector2):
 		var sender_id = multiplayer.get_remote_sender_id()
 		game_scene.update_player_position(sender_id, pos)
 
+
 @rpc("any_peer", "call_remote", "reliable")
 func reveal():
 	if not is_server():
@@ -222,7 +224,7 @@ func reveal():
 	else:
 		var sender_id = multiplayer.get_remote_sender_id()
 		game_scene.reveal(sender_id)
-	
+
 
 @rpc("any_peer", "call_remote", "reliable")
 func server_place_emoji_on_map(sender_id, index):
