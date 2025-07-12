@@ -248,6 +248,11 @@ func nitro_boost_activated():
 	if game_scene != null:
 		game_scene.nitro_boost_activated(multiplayer.get_remote_sender_id())
 
+
+@rpc("authority", "call_remote", "reliable")
+func client_restart_game():
+	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
+
 func get_player_info(id):
 	for player in players_in_lobby:
 		var player_info = (player as LobbyPlayerInfo)

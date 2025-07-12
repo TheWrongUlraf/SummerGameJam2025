@@ -13,3 +13,23 @@ position = Vector2(-444, 466)
 zoom = Vector2(0.065, 0.065)
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 1606.0
+offset_top = 926.0
+offset_right = 1889.0
+offset_bottom = 1056.0
+text = "Restart"
+
+[connection signal="pressed" from="CanvasLayer/Control/RestartButton" to="." method="_on_restart_button_pressed"]

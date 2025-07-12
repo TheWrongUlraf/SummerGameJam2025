@@ -129,3 +129,8 @@ func _get_randomized_spawn_points(number):
 	for i in range(0, number):
 		positions.append(spawn_points[i].global_position)
 	return positions
+
+
+func _on_restart_button_pressed() -> void:
+	Lobby.client_restart_game.rpc()
+	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
