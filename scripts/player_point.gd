@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-var PLAYER_SPEED = 10
-var PLAYER_MAX_SPEED = PLAYER_SPEED * 25
-var PLAYER_SLOWDOWN_SPEED = PLAYER_SPEED * 2
+var PLAYER_SPEED = 20
+var PLAYER_MIN_SPEED = PLAYER_SPEED / 5
+var PLAYER_MAX_SPEED = PLAYER_SPEED * 40
+var PLAYER_SLOWDOWN_SPEED = PLAYER_SPEED * 0.5
 
 var dragged := false
 var target_position: Vector2
@@ -39,10 +40,15 @@ func _physics_process(_delta: float) -> void:
 			velocity = velocity.normalized() * playerMaxSpeed
 	else:
 		if velocity.length() > 0:
-			if velocity.length() < 0.1:
+			var slowdown = velocity.normalized() * PLAYER_SLOWDOWN_SPEED
+			if velocity.length() < slowdown.length():
 				velocity = Vector2.ZERO
 			else:
-				velocity -= velocity.normalized() * PLAYER_SLOWDOWN_SPEED
+				velocity -= slowdown
+				
+			if velocity.length() < PLAYER_MIN_SPEED:
+				velocity = Vector2.ZERO
+		
 		target_position = global_position
 	move_and_slide()
 	

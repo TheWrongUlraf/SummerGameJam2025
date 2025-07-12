@@ -3,10 +3,11 @@
 [ext_resource type="Script" uid="uid://obh6i7qwggu6" path="res://scripts/player_icon.gd" id="1_4pd3g"]
 
 [node name="PlayerIcon" type="Node2D"]
-scale = Vector2(2, 2)
+scale = Vector2(5, 5)
 script = ExtResource("1_4pd3g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 
 [node name="NameLabel" type="RichTextLabel" parent="."]
 modulate = Color(1, 0, 0, 1)

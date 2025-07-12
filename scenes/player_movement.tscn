@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://isvo3q10tf08"]
+[gd_scene load_steps=8 format=3 uid="uid://isvo3q10tf08"]
 
-[ext_resource type="Texture2D" uid="uid://bavxd6qmhd03i" path="res://assets/art/point.png" id="1_7wc8n"]
 [ext_resource type="Script" uid="uid://dwibxfsqporcu" path="res://scripts/player_movement.gd" id="1_dlsem"]
 [ext_resource type="PackedScene" uid="uid://do2818u4a86j5" path="res://objects/map.tscn" id="1_tn4kn"]
 [ext_resource type="Script" uid="uid://mpe2vbqnpdol" path="res://scripts/player_point.gd" id="3_tn4kn"]
@@ -20,16 +19,16 @@ script = ExtResource("1_dlsem")
 position = Vector2(-490, 372)
 script = ExtResource("3_tn4kn")
 
-[node name="PlayerPoint" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(2, 2)
-texture = ExtResource("1_7wc8n")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_tn4kn")
 
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_fhu7s")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-491, 363)
-zoom = Vector2(0.3, 0.3)
+zoom = Vector2(0.7, 0.7)
 
 [node name="RevealButton" type="Sprite2D" parent="Camera2D"]
 modulate = Color(0.53654, 0.787091, 0.823788, 1)
@@ -51,6 +50,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 offset = Vector2(550, 180)
 scale = Vector2(0.3, 0.3)
 transform = Transform2D(0.3, 0, 0, 0.3, 550, 180)
