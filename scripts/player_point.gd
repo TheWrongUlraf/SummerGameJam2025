@@ -16,7 +16,7 @@ func _ready():
 	target_position = global_position
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var canvas_pos : Vector2 = get_global_mouse_position()
 	
 	if not target_camera_pos_initialized:
@@ -57,7 +57,7 @@ func _input(event):
 		elif not event.pressed:
 			dragged = false
 		
-func _is_touching_point(pos: Vector2) -> bool:
+func _is_touching_point(_pos: Vector2) -> bool:
 	return true
 	#var radius = (texture.get_width()/2)*3 # Fat finger support
 	#return global_position.distance_to(pos) <= radius;

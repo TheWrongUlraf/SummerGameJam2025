@@ -39,17 +39,18 @@ func _on_connect_button_pressed() -> void:
 
 
 func _on_start_game_debug_button_pressed() -> void:
-	Lobby.server_start_game()
-	Lobby.change_to_game_scene()
+	if len(Lobby.players_in_lobby) > 0:
+		Lobby.server_start_game()
+		Lobby.change_to_game_scene()
 
 
 func _client_on_connected():
 	var preffered_role = Lobby.ROLE_RANDOM
 	var selected_index = $VerticalBox/ClientControls/NotConnected/HBoxContainer/RoleSelector.selected
 	if selected_index == 0:
-		preffered_role == Lobby.ROLE_POLICE
+		preffered_role = Lobby.ROLE_POLICE
 	if selected_index == 1:
-		preffered_role == Lobby.ROLE_REBEL
+		preffered_role = Lobby.ROLE_REBEL
 	Lobby.client_reported_lobby_ready($VerticalBox/ClientControls/NotConnected/NameEdit.text, preffered_role);
 	$VerticalBox/ClientControls/NotConnected.hide()
 	$VerticalBox/ClientControls/Connected.show()

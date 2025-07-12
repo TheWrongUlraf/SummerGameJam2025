@@ -33,9 +33,7 @@ func _ready():
 	var ip = _get_ip()
 	print("Our IP is ", ip)
 
-	var is_server = is_server()
-
-	if is_server:
+	if is_server():
 		print("We think we are the server")
 		multiplayer.peer_connected.connect(_server_only_on_client_connected)
 		multiplayer.peer_disconnected.connect(_server_only_on_client_disconnected)
@@ -96,11 +94,11 @@ func get_all_ips():
 
 
 @rpc("any_peer", "call_remote", "reliable")
-func _server_on_player_ready_in_lobby(id, name, role):
+func _server_on_player_ready_in_lobby(id, player_name, role):
 	if multiplayer.is_server():
 		var player = LobbyPlayerInfo.new()
 		player.Id = id
-		player.Name = name
+		player.Name = player_name
 		player.Role = role
 		players_in_lobby.append(player)
 		server_on_player_number_updated.emit()
@@ -158,8 +156,8 @@ func connect_to_server(ip):
 	multiplayer.multiplayer_peer = peer
 
 
-func client_reported_lobby_ready(name, role):
-	_server_on_player_ready_in_lobby.rpc(multiplayer.get_unique_id(), name, role)
+func client_reported_lobby_ready(player_name, role):
+	_server_on_player_ready_in_lobby.rpc(multiplayer.get_unique_id(), player_name, role)
 
 
 func disconnect_from_server():
@@ -217,7 +215,8 @@ func _start_game(role):
 func update_position(pos: Vector2):
 	if not is_server():
 		printerr("We never call this on the client duh!")
-		
+		return
+
 	if game_scene == null:
 		printerr("Server not ready!")
 	else:
