@@ -12,12 +12,12 @@ config_version=5
 
 config/name="SummerGameJam2025"
 config/version="0.1"
-run/main_scene="uid://0pw6q6h7yq0i"
+run/main_scene="uid://isvo3q10tf08"
 config/features=PackedStringArray("4.4", "Mobile")
 
 [autoload]
 
-Lobby="*res://utils/lobby.gd"
+Lobby="*res://scripts/lobby.gd"
 
 [display]
 

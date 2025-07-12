@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://0pw6q6h7yq0i"]
+[gd_scene load_steps=2 format=3 uid="uid://2h6s5sy2i333"]
 
-[ext_resource type="Script" uid="uid://y1silb1v38ji" path="res://scenes/screens/lobby_screen.gd" id="1_33cb4"]
+[ext_resource type="Script" uid="uid://6rjw8bnb5e8t" path="res://scripts/lobby_screen.gd" id="1_mx6st"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_33cb4")
+script = ExtResource("1_mx6st")
 
 [node name="VerticalBox" type="VBoxContainer" parent="."]
 layout_mode = 1

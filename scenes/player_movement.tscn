@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bavxd6qmhd03i" path="res://assets/art/point.png" id="1_7wc8n"]
 [ext_resource type="Texture2D" uid="uid://dt30mr5fwjxai" path="res://assets/art/map.png" id="1_ko2nw"]
-[ext_resource type="Script" uid="uid://bfgtg5yrj1muo" path="res://scenes/player_point.gd" id="3_tn4kn"]
+[ext_resource type="Script" uid="uid://mpe2vbqnpdol" path="res://scripts/player_point.gd" id="3_tn4kn"]
 
 [node name="Node2D" type="Node2D"]
 
