@@ -5,5 +5,4 @@ extends Node2D
 func _ready() -> void:
 	if ClientPlayer.role != Lobby.ROLE_REBEL:
 		revealButton.get_parent().remove_child(revealButton)
-		
 	

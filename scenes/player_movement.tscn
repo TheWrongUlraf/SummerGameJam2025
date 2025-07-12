@@ -32,8 +32,8 @@ zoom = Vector2(0.3, 0.3)
 
 [node name="RevealButton" type="Sprite2D" parent="Camera2D"]
 modulate = Color(0.53654, 0.787091, 0.823788, 1)
-position = Vector2(269, -123)
-scale = Vector2(0.324219, 0.324219)
+position = Vector2(765.063, -424.063)
+scale = Vector2(0.906738, 0.906738)
 texture = ExtResource("4_fhu7s")
 region_rect = Rect2(1, 0, 20, 20)
 script = ExtResource("4_7ybod")
