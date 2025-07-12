@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd521iwor8mwl"]
+[gd_scene load_steps=6 format=3 uid="uid://bd521iwor8mwl"]
 
 [ext_resource type="Script" uid="uid://et7sotnt142g" path="res://scripts/in_game_hud.gd" id="1_ay5hx"]
-[ext_resource type="PackedScene" path="res://objects/ability_button.tscn" id="1_lwrg5"]
+[ext_resource type="PackedScene" uid="uid://cqqyraf663xg3" path="res://objects/ability_button.tscn" id="1_lwrg5"]
 [ext_resource type="Texture2D" uid="uid://bavxd6qmhd03i" path="res://assets/art/point.png" id="2_dflql"]
+[ext_resource type="Theme" uid="uid://bnivdma6helc8" path="res://themes/UI_theme.tres" id="2_nv1qt"]
 [ext_resource type="Texture2D" uid="uid://cx4xhll6f8ri6" path="res://assets/art/buildings/House_01.png" id="4_8q1ka"]
 
 [node name="InGameHud" type="Control"]
@@ -32,7 +33,36 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="RebelHud/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="StageNumberText" type="RichTextLabel" parent="RebelHud/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("2_nv1qt")
+text = "Stage 1"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RebelHud/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="ObjectiveText" type="RichTextLabel" parent="RebelHud/HBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme = ExtResource("2_nv1qt")
+text = "Current objective: "
+fit_content = true
+
+[node name="ObjectiveIcon" type="TextureRect" parent="RebelHud/HBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 4
+
 [node name="VBoxContainer" type="VBoxContainer" parent="RebelHud/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8

@@ -13,6 +13,9 @@ var players_in_lobby = Array()
 
 var _is_server_cached = -1
 
+var _stage = 0
+var _stage_icon = 0
+
 var game_scene = null
 var _client_role = ROLE_RANDOM
 var _client_name = ""
@@ -27,6 +30,7 @@ signal client_on_disconnected
 signal client_on_game_started
 signal client_on_game_reset
 signal client_on_player_put_emoji
+signal client_on_stage_changed
 
 var EMOJI_TEXTURES := [
 	preload("res://assets/art/graffiti/Graf_Bomb.png"),
@@ -249,7 +253,7 @@ func reveal():
 	if not is_server():
 		printerr("We never call this on the client duh!")
 		return
-		
+
 	if game_scene == null:
 		printerr("Server not ready!")
 	else:
@@ -270,6 +274,7 @@ func server_place_emoji_on_map(sender_id, index):
 @rpc("call_remote", "reliable")
 func _client_place_emoji_on_map(position, index):
 	client_on_player_put_emoji.emit(position, index, 0)
+
 
 @rpc("any_peer", "call_remote", "reliable")
 func nitro_boost_activated():
@@ -320,12 +325,32 @@ func client_get_role():
 func get_client_name():
 	return _client_name
 
+
 func is_connected_to_server():
 	# if we have a role assigned, we are surely initilized, suuurely..
 	return _client_role != ROLE_RANDOM
+
 
 func team_wins(role: int):
 	for i in range(0, len(players_in_lobby)):
 		var player = Lobby.players_in_lobby[i]
 		var player_info = (player as LobbyPlayerInfo)
 		Lobby._team_wins.rpc_id(player_info.Id, role)
+
+
+func server_on_stage_changed(stage, objective_icon):
+	_client_on_stage_changed.rpc(stage, objective_icon)
+
+
+@rpc("authority", "call_remote", "reliable")
+func _client_on_stage_changed(stage, objective_icon):
+	_stage = stage
+	_stage_icon = objective_icon
+	client_on_stage_changed.emit(stage, objective_icon)
+
+func client_get_stage():
+	return _stage
+
+
+func client_get_stage_objective_icon():
+	return _stage_icon

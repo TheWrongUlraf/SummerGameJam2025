@@ -6,6 +6,11 @@ var players := {}
 
 var cop_player: PlayerInfo
 
+var stage = 0
+var max_stages = 5
+var current_objective_pos = Vector2(0.0, 0.0)
+var emojis = Array()
+
 func _ready() -> void:
 	if !Lobby.is_server():
 		printerr("Don't call it from client!")
@@ -50,6 +55,8 @@ func _ready() -> void:
 			cop_player = game_player_info
 
 	_generate_random_emojis()
+
+	_choose_next_objective()
 
 func update_player_position(player_id: int, pos: Vector2):
 	if players.has(player_id):
@@ -114,12 +121,16 @@ func _check_win_conditions():
 		if player.role == Lobby.ROLE_REBEL:
 			rebels += 1
 			if player.is_revealed():
-				var distance = player.player_node.global_position.distance_to(player.player_node.global_position)
+				var distance = current_objective_pos.distance_to(player.player_node.global_position)
 				if distance < 100:
 					revealed_rebels_closeby += 1
 
 	if revealed_rebels_closeby >= rebels:
-		Lobby.team_wins(Lobby.ROLE_REBEL)
+		stage += 1
+		if stage >= max_stages:
+			Lobby.team_wins(Lobby.ROLE_REBEL)
+		else:
+			_choose_next_objective()
 
 
 func _get_randomized_spawn_points(number):
@@ -144,9 +155,15 @@ func _generate_random_emojis():
 	var reveal_times = Array()
 	var spawn_points = $Map/SpawnPositions.get_children()
 	var emoji_tex_len = len(Lobby.EMOJI_TEXTURES)
-	var emojis = range(emoji_tex_len)
+	emojis = range(emoji_tex_len)
 	emojis.shuffle()
 	for spawn_point in spawn_points:
 		positions.append(spawn_point.global_position)
-		reveal_times.append(randi() % emoji_tex_len + 1)
+		reveal_times.append(1 + randi() % (max_stages - 1))
 	Lobby.place_emojis(positions, emojis, reveal_times)
+
+func _choose_next_objective():
+	var next_objective_idx = randi() % $Map/SpawnPositions.get_child_count()
+	current_objective_pos = $Map/SpawnPositions.get_child(next_objective_idx).global_position
+	var next_objective_emoji = emojis[next_objective_idx]
+	Lobby.server_on_stage_changed(stage, next_objective_emoji)

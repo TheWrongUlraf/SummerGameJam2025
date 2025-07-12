@@ -20,7 +20,7 @@ func _ready() -> void:
 	nitro_texture = load("res://assets/art/Nitro.png")
 	nitro_disabled_texture = load("res://assets/art/Nitro_gray.png")
 	nitro_active_texture = load("res://assets/art/Nitro_active.png")
-	
+
 
 func _process(_delta: float) -> void:
 	if ClientPlayer.role == Lobby.ROLE_POLICE:
