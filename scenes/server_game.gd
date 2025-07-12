@@ -29,7 +29,7 @@ func _ready() -> void:
 	var spawn_points = _get_randomized_spawn_points(len(Lobby.players_in_lobby))
 
 	var player_icon_scene = load("res://objects/player_icon.tscn")
-		
+
 	for i in range(0, len(Lobby.players_in_lobby)):
 		var player = Lobby.players_in_lobby[i]
 		var player_info = (player as Lobby.LobbyPlayerInfo)
@@ -38,7 +38,6 @@ func _ready() -> void:
 
 		var starting_pos = spawn_points[i]
 		Lobby._start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name, starting_pos)
-		
 
 		var playerSprite = player_icon_scene.instantiate()
 		playerSprite.global_position = starting_pos
@@ -46,39 +45,20 @@ func _ready() -> void:
 		playerSprite.setup_icon(game_player_info)
 		players.set(player_info.Id, game_player_info)
 		add_child(playerSprite)
-	
+
 		if player_info.Role == Lobby.ROLE_POLICE:
 			cop_player = game_player_info
-	
+
 	_generate_random_emojis()
 
 func update_player_position(player_id: int, pos: Vector2):
 	if players.has(player_id):
 		players.get(player_id).player_node.position = pos
-		
+
 func reveal(player_id: int):
 	if players.has(player_id):
 		var player : PlayerInfo = players.get(player_id)
 		player.reveal_cooldown = 10 # Reveal time
-		
-	var player : PlayerInfo = players[player_id]
-	
-	var other_rebels := 0
-	var other_revealed_rebels_closeby := 0
-	
-	for other_player_id in players:
-		if other_player_id != player_id:
-			var other_player : PlayerInfo = players[other_player_id]
-			if other_player.role == Lobby.ROLE_REBEL:
-				other_rebels += 1
-				if other_player.is_revealed():
-					var distance = other_player.player_node.global_position.distance_to(player.player_node.global_position)
-					if distance < 100:
-						other_revealed_rebels_closeby += 1
-				
-	if other_revealed_rebels_closeby >= other_rebels:
-		Lobby.team_wins(Lobby.ROLE_REBEL)
-	
 
 func get_player_position(player_id):
 	if players.has(player_id):
@@ -94,21 +74,14 @@ func on_emoji_placed(player_id):
 	if players.has(player_id):
 		players.get(player_id).last_placed_emoji_time = Time.get_unix_time_from_system()
 
-func nitro_boost_activated(player_id: int):
+func nitro_boost_activated(_player_id: int):
 	audio.stream = load("res://assets/sounds/nitro_boost.ogg")
 	audio.play()
 
 func _process(delta: float) -> void:
-	for player_id in players:
-		var player : PlayerInfo = players[player_id]
+	for player in players.values():
 		player._process(delta)
-		if cop_player.player_id != player.player_id:
-			if player.player_node.global_position.distance_to(cop_player.player_node.global_position) <= 250:
-				if !player.caught:
-					audio.stream = load("res://assets/sounds/siren.ogg")
-					audio.play()
-					player.caught = true
-					Lobby.team_wins(Lobby.ROLE_POLICE)
+	_check_win_conditions()
 	update_visuals()
 
 func update_visuals():
@@ -120,6 +93,34 @@ func update_visuals():
 			player.player_node.visible = false
 			if player.is_revealed() or player.caught:
 				player.player_node.visible = true
+
+func _check_win_conditions():
+	for player_id in players:
+		var player : PlayerInfo = players[player_id]
+		if cop_player.player_id != player.player_id:
+			if player.player_node.global_position.distance_to(cop_player.player_node.global_position) <= 250:
+				if !player.caught:
+					audio.stream = load("res://assets/sounds/siren.ogg")
+					audio.play()
+					player.caught = true
+					Lobby.team_wins(Lobby.ROLE_POLICE)
+					return
+
+	var rebels := 0
+	var revealed_rebels_closeby := 0
+
+	for player_id in players:
+		var player : PlayerInfo = players[player_id]
+		if player.role == Lobby.ROLE_REBEL:
+			rebels += 1
+			if player.is_revealed():
+				var distance = player.player_node.global_position.distance_to(player.player_node.global_position)
+				if distance < 100:
+					revealed_rebels_closeby += 1
+
+	if revealed_rebels_closeby >= rebels:
+		Lobby.team_wins(Lobby.ROLE_REBEL)
+
 
 func _get_randomized_spawn_points(number):
 	var spawn_points = $Map/SpawnPositions.get_children()
