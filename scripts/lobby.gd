@@ -37,9 +37,14 @@ func _ready():
 
 
 func client_is_initialized():
-	if OS.get_cmdline_args().has("-debugclient"):
+	var cmdline_args = OS.get_cmdline_args()
+	if cmdline_args.has("-debugclient"):
 		print("Autoconnecting to 127.0.0.1")
 		_debug_client_autoconnect()
+	if cmdline_args.has("-connect"):
+		var ip = cmdline_args[cmdline_args.find("-connect") + 1]
+		connect_to_server(ip)
+
 
 # automatically connect the client to this server
 func _debug_client_autoconnect():
