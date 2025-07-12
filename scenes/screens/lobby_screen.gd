@@ -53,7 +53,7 @@ func _client_on_connection_error():
 
 
 func _client_on_game_started():
-	print("GO!GO!GO!")
+	get_tree().change_scene_to_file("res://scenes/player_movement.tscn")
 	pass
 
 func _on_disconnect_button_pressed() -> void:
