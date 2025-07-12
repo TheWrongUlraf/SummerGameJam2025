@@ -2,16 +2,16 @@ extends Control
 
 func _ready():
 	if Lobby.is_server():
-		var ips_text = "The IP to connect is: "
+		var ips_text = ""
 		var ips = Lobby.get_all_ips()
 		for ip in ips:
 			if !ips_text.is_empty():
 				ips_text += " or "
 			ips_text += ip
-		
+
 		$VerticalBox/ClientControls.hide()
 		$VerticalBox/ServerControls.show()
-		$VerticalBox/ServerControls/IPToConnectTo.text = ips_text
+		$VerticalBox/ServerControls/IPToConnectTo.text = "The IP to connect is: " + ips_text
 		Lobby.server_on_player_number_updated.connect(_on_number_updated)
 		_on_number_updated()
 	else:
@@ -56,6 +56,7 @@ func _client_on_connection_error():
 func _client_on_game_started():
 	get_tree().change_scene_to_file("res://scenes/player_movement.tscn")
 	pass
+
 
 func _on_disconnect_button_pressed() -> void:
 	Lobby.disconnect_from_server()
