@@ -58,9 +58,9 @@ func _client_on_connected():
 	var preffered_role = Lobby.ROLE_RANDOM
 	var selected_index = $VerticalBox/ClientControls/NotConnected/HBoxContainer/RoleSelector.selected
 	if selected_index == 0:
-		preffered_role = Lobby.ROLE_POLICE
-	if selected_index == 1:
 		preffered_role = Lobby.ROLE_REBEL
+	if selected_index == 1:
+		preffered_role = Lobby.ROLE_POLICE
 	Lobby.client_reported_lobby_ready($VerticalBox/ClientControls/NotConnected/NameEdit.text, preffered_role);
 	$VerticalBox/ClientControls/NotConnected.hide()
 	$VerticalBox/ClientControls/Connected.show()
