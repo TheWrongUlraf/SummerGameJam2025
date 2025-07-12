@@ -15,6 +15,7 @@ var _is_server_cached = -1
 
 var game_scene = null
 var _client_role = ROLE_RANDOM
+var _client_name = ""
 
 signal server_on_player_number_updated
 
@@ -199,14 +200,15 @@ func server_start_game():
 		var player_info = (player as LobbyPlayerInfo)
 		if player_info.Role != ROLE_POLICE:
 			player_info.Role = ROLE_REBEL
-		_start_game.rpc_id(player_info.Id, player_info.Role)
+		_start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name)
 
 
 @rpc("authority", "call_remote", "reliable")
-func _start_game(role):
+func _start_game(role, player_name):
 	if is_server():
 		printerr("We never call this on the server duh!")
 	_client_role = role
+	_client_name = player_name
 	print("Client role: " + str(_client_role))
 	client_on_game_started.emit()
 
@@ -224,7 +226,6 @@ func update_position(pos: Vector2):
 		game_scene.update_player_position(sender_id, pos)
 
 
-
 func get_player_info(id):
 	for player in players_in_lobby:
 		var player_info = (player as LobbyPlayerInfo)
@@ -235,3 +236,7 @@ func get_player_info(id):
 
 func client_get_role():
 	return _client_role
+
+
+func get_client_name():
+	return _client_name
