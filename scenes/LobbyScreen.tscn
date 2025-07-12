@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://2h6s5sy2i333"]
+[gd_scene load_steps=3 format=3 uid="uid://2h6s5sy2i333"]
 
 [ext_resource type="Script" uid="uid://6rjw8bnb5e8t" path="res://scripts/lobby_screen.gd" id="1_mx6st"]
+[ext_resource type="Theme" uid="uid://bnivdma6helc8" path="res://themes/UI_theme.tres" id="2_0jx1e"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -28,11 +29,13 @@ layout_mode = 2
 [node name="ServerIP" type="TextEdit" parent="VerticalBox/ClientControls/NotConnected"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("2_0jx1e")
 text = "192.168.1."
 
 [node name="NameEdit" type="TextEdit" parent="VerticalBox/ClientControls/NotConnected"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("2_0jx1e")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VerticalBox/ClientControls/NotConnected"]
 layout_mode = 2
@@ -40,11 +43,13 @@ layout_mode = 2
 [node name="RoleLabel" type="RichTextLabel" parent="VerticalBox/ClientControls/NotConnected/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme = ExtResource("2_0jx1e")
 text = "Preffered role:"
 fit_content = true
 
 [node name="RoleSelector" type="OptionButton" parent="VerticalBox/ClientControls/NotConnected/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_0jx1e")
 selected = 2
 item_count = 3
 popup/item_0/text = "Spy"
@@ -56,6 +61,7 @@ popup/item_2/id = 2
 
 [node name="ConnectButton" type="Button" parent="VerticalBox/ClientControls/NotConnected"]
 layout_mode = 2
+theme = ExtResource("2_0jx1e")
 text = "Connect"
 
 [node name="ErrorText" type="RichTextLabel" parent="VerticalBox/ClientControls/NotConnected"]
@@ -79,16 +85,19 @@ layout_mode = 2
 [node name="IPToConnectTo" type="RichTextLabel" parent="VerticalBox/ServerControls"]
 layout_mode = 2
 size_flags_vertical = 0
+theme = ExtResource("2_0jx1e")
 text = "IP to connect to: "
 fit_content = true
 
 [node name="PlayersInTheLobby" type="RichTextLabel" parent="VerticalBox/ServerControls"]
 layout_mode = 2
+theme = ExtResource("2_0jx1e")
 text = "Players in the lobby"
 fit_content = true
 
 [node name="StartGameDebugButton" type="Button" parent="VerticalBox/ServerControls"]
 layout_mode = 2
+theme = ExtResource("2_0jx1e")
 text = "Start game [DEBUG]"
 
 [connection signal="pressed" from="VerticalBox/ClientControls/NotConnected/ConnectButton" to="." method="_on_connect_button_pressed"]
