@@ -176,34 +176,6 @@ func change_to_game_scene():
 	game_scene = get_tree().current_scene
 
 
-func server_start_game():
-	if !is_server():
-		printerr("Don't call it from client!")
-		return
-
-	var is_police_role_assigned = false
-
-	players_in_lobby.shuffle()
-
-	for player in players_in_lobby:
-		var player_info = (player as LobbyPlayerInfo)
-		if player_info.Role == ROLE_POLICE:
-			if is_police_role_assigned == true:
-				player_info.Role = ROLE_REBEL
-			else:
-				is_police_role_assigned = true
-
-	if !is_police_role_assigned:
-		(players_in_lobby[0] as LobbyPlayerInfo).Role = ROLE_POLICE
-
-	for player in players_in_lobby:
-		var player_info = (player as LobbyPlayerInfo)
-		if player_info.Role != ROLE_POLICE:
-			player_info.Role = ROLE_REBEL
-		var starting_pos = Vector2(randf_range(-1000, 1000), randf_range(-1000, 1000))
-		_start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name, starting_pos)
-
-
 @rpc("authority", "call_remote", "reliable")
 func _start_game(role, player_name, starting_position):
 	if is_server():

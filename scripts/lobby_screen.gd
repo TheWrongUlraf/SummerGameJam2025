@@ -40,7 +40,6 @@ func _on_connect_button_pressed() -> void:
 
 func _on_start_game_debug_button_pressed() -> void:
 	if len(Lobby.players_in_lobby) > 0:
-		Lobby.server_start_game()
 		Lobby.change_to_game_scene()
 
 
