@@ -27,6 +27,8 @@ signal client_on_disconnected
 signal client_on_game_started
 signal client_on_player_put_emoji
 
+var EMOJI_TEXTURES := []
+
 class LobbyPlayerInfo:
 	var Id: int
 	var Name: String
@@ -41,6 +43,8 @@ class ScheduledEmoji:
 const EMOJI_COOLDOWN_TIME_SEC = 10.0
 
 func _ready():
+	load_emoji_textures()
+	
 	print("Initializing the networking")
 	var ip = _get_ip()
 	print("Our IP is ", ip)
@@ -54,6 +58,24 @@ func _ready():
 		multiplayer.multiplayer_peer = peer
 	else:
 		print("We think we are a client, waiting for input")
+
+
+func load_emoji_textures():
+	var dir_path = "res://assets/art/graffiti/"
+	var dir = DirAccess.open(dir_path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		var image_paths := []
+		while file_name != "":
+			if !dir.current_is_dir() and file_name.ends_with(".png"):
+				var path = dir_path + file_name
+				image_paths.append(path)
+				var texture = load(path)
+				if texture:
+					EMOJI_TEXTURES.append(texture)
+			file_name = dir.get_next()
+		dir.list_dir_end()
 
 
 func client_is_initialized():

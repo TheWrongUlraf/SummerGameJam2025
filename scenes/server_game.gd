@@ -140,11 +140,12 @@ func _on_restart_button_pressed() -> void:
 
 func _generate_random_emojis():
 	var positions = Array()
-	var emojis = Array()
 	var reveal_times = Array()
 	var spawn_points = $Map/SpawnPositions.get_children()
+	var emoji_tex_len = len(Lobby.EMOJI_TEXTURES)
+	var emojis = range(emoji_tex_len)
+	emojis.shuffle()
 	for spawn_point in spawn_points:
 		positions.append(spawn_point.global_position)
-		emojis.append(randi() % 3)
-		reveal_times.append(randi() % 3 + 1)
+		reveal_times.append(randi() % emoji_tex_len + 1)
 	Lobby.place_emojis(positions, emojis, reveal_times)
