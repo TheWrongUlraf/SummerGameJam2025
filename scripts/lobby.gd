@@ -25,6 +25,7 @@ signal client_on_connected
 signal client_on_connection_error
 signal client_on_disconnected
 signal client_on_game_started
+signal client_on_game_reset
 signal client_on_player_put_emoji
 
 var EMOJI_TEXTURES := [
@@ -278,6 +279,7 @@ func nitro_boost_activated():
 
 @rpc("authority", "call_remote", "reliable")
 func client_restart_game():
+	client_on_game_reset.emit()
 	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
 
 
