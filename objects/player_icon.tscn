@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://5vpcxpvrn3rw"]
+
+[ext_resource type="Script" uid="uid://obh6i7qwggu6" path="res://scripts/player_icon.gd" id="1_4pd3g"]
+
+[node name="PlayerIcon" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_4pd3g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -219.0
+offset_top = -89.0
+offset_right = 226.0
+offset_bottom = -29.0
+theme_override_font_sizes/normal_font_size = 43
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

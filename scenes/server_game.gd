@@ -28,6 +28,8 @@ func _ready() -> void:
 
 	var spawn_points = _get_randomized_spawn_points(len(Lobby.players_in_lobby))
 
+	var player_icon_scene = load("res://objects/player_icon.tscn")
+		
 	for i in range(0, len(Lobby.players_in_lobby)):
 		var player = Lobby.players_in_lobby[i]
 		var player_info = (player as Lobby.LobbyPlayerInfo)
@@ -37,17 +39,11 @@ func _ready() -> void:
 		var starting_pos = spawn_points[i]
 		Lobby._start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name, starting_pos)
 		
-		var playerSprite = Sprite2D.new()
-		if player_info.Role == Lobby.ROLE_POLICE:
-			playerSprite.texture = load("res://assets/art/PoliceCar.png")
-			playerSprite.scale = Vector2(0.5, 0.5)
-			playerSprite.visible = true
-		else:
-			playerSprite.texture = load("res://assets/art/point.png")
-			playerSprite.visible = false
-			
+
+		var playerSprite = player_icon_scene.instantiate()
 		playerSprite.global_position = starting_pos
-		var game_player_info := PlayerInfo.new(player_info.Id, playerSprite, player_info.Role)
+		var game_player_info := PlayerInfo.new(player_info.Id, playerSprite, player_info.Role, player_info.Name)
+		playerSprite.setup_icon(game_player_info)
 		players.set(player_info.Id, game_player_info)
 		add_child(playerSprite)
 	
