@@ -27,20 +27,27 @@ func _physics_process(_delta: float) -> void:
 	if not target_camera_pos_initialized:
 		target_camera_pos_initialized = true
 		target_camera_pos = camera.global_position
+	
+	var playerSpeed = PLAYER_SPEED
+	var playerMaxSpeed = PLAYER_MAX_SPEED
+	var playerSlowDown = PLAYER_SLOWDOWN_SPEED
 		
+	if ClientPlayer.role == Lobby.ROLE_POLICE:
+		playerSpeed *= 1.5
+		playerMaxSpeed *= 1.5
+		playerSlowDown *= 0.5
+	if nitro_boost_active > 0:
+		playerSpeed *= 2.0
+		playerMaxSpeed *= 2.0
+		playerSlowDown *= 0.5
 	if dragged:
 		target_position = canvas_pos
-		var playerSpeed = PLAYER_SPEED
-		var playerMaxSpeed = PLAYER_MAX_SPEED
-		if nitro_boost_active > 0:
-			playerSpeed *= 2.0
-			playerMaxSpeed *= 2.0
 		velocity += (target_position - global_position).normalized() * playerSpeed
 		if velocity.length() > playerMaxSpeed:
 			velocity = velocity.normalized() * playerMaxSpeed
 	else:
 		if velocity.length() > 0:
-			var slowdown = velocity.normalized() * PLAYER_SLOWDOWN_SPEED
+			var slowdown = velocity.normalized() * playerSlowDown
 			if velocity.length() < slowdown.length():
 				velocity = Vector2.ZERO
 			else:
