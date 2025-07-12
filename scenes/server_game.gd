@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var audio: AudioStreamPlayer2D = get_node("Audio")
 
 var players := {}
 
@@ -62,8 +63,11 @@ func _process(delta: float) -> void:
 		var player : PlayerInfo = players[player_id]
 		if cop_player.player_id != player.player_id:
 			if player.player_node.global_position.distance_to(cop_player.player_node.global_position) <= 250:
-				player.player_node.visible = true
-				print("Player ", player.player_id, " caught!")
+				if !player.player_node.visible:
+					audio.stream = load("res://assets/sounds/siren.ogg")
+					audio.play()
+					player.player_node.visible = true
+					print("Player ", player.player_id, " caught!")
 
 func _get_randomized_spawn_points(number):
 	var spawn_points = $Map/SpawnPositions.get_children()

@@ -10,3 +10,5 @@ script = ExtResource("1_at1r8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
