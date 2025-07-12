@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.4", "Mobile")
 [autoload]
 
 Lobby="*res://scripts/lobby.gd"
+ClientPlayer="*res://scripts/client_player.gd"
 
 [display]
 

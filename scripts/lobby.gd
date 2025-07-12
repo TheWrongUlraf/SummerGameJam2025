@@ -200,17 +200,18 @@ func server_start_game():
 		var player_info = (player as LobbyPlayerInfo)
 		if player_info.Role != ROLE_POLICE:
 			player_info.Role = ROLE_REBEL
-		_start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name)
+		var starting_pos = Vector2(randf_range(-1000, 1000), randf_range(-1000, 1000))
+		_start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name, starting_pos)
 
 
 @rpc("authority", "call_remote", "reliable")
-func _start_game(role, player_name):
+func _start_game(role, player_name, starting_position):
 	if is_server():
 		printerr("We never call this on the server duh!")
 	_client_role = role
 	_client_name = player_name
 	print("Client role: " + str(_client_role))
-	client_on_game_started.emit()
+	client_on_game_started.emit(role, starting_position)
 
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")

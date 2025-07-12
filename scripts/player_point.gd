@@ -13,6 +13,7 @@ var target_camera_pos_initialized := false
 @onready var map: Sprite2D = get_node("../Map")
 
 func _ready():
+	global_position = ClientPlayer.player_pos
 	target_position = global_position
 
 
