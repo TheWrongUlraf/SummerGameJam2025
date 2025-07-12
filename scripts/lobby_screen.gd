@@ -1,7 +1,13 @@
 extends Control
 
-const PredefinedAdjectives = ["Fun", "Crazy", "Calm", "Cool", "Noisy", "Jumpy"]
-const PredefinedNouns = ["Raccoon", "Panda", "Frog", "Fox", "Dog", "Cat"]
+const PredefinedAdjectives = [
+	"Fun", "Crazy", "Calm", "Cool", "Noisy", "Jumpy",
+	"Kinky", "Scary", "Lazy", "Fluffy", "Smart"
+	]
+const PredefinedNouns = [
+	"Raccoon", "Panda", "Frog", "Fox", "Dog", "Cat",
+	"Sheep", "Lion", "Puma", "Bat"
+	]
 
 func _ready():
 	if Lobby.is_server():
