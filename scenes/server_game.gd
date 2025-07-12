@@ -25,11 +25,15 @@ func _ready() -> void:
 	if !is_police_role_assigned:
 		(Lobby.players_in_lobby[0] as Lobby.LobbyPlayerInfo).Role = Lobby.ROLE_POLICE
 
-	for player in Lobby.players_in_lobby:
+	var spawn_points = _get_randomized_spawn_points(len(Lobby.players_in_lobby))
+
+	for i in range(0, len(Lobby.players_in_lobby)):
+		var player = Lobby.players_in_lobby[i]
 		var player_info = (player as Lobby.LobbyPlayerInfo)
 		if player_info.Role != Lobby.ROLE_POLICE:
 			player_info.Role = Lobby.ROLE_REBEL
-		var starting_pos = Vector2(randf_range(-1000, 1000), randf_range(-1000, 1000))
+
+		var starting_pos = spawn_points[i]
 		Lobby._start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name, starting_pos)
 		
 		var playerSprite = Sprite2D.new()
@@ -60,3 +64,14 @@ func _process(delta: float) -> void:
 			if player.player_node.global_position.distance_to(cop_player.player_node.global_position) <= 250:
 				player.player_node.visible = true
 				print("Player ", player.player_id, " caught!")
+
+func _get_randomized_spawn_points(number):
+	var spawn_points = $Map/SpawnPositions.get_children()
+	var positions = Array()
+	if number > len(spawn_points):
+		printerr("Trying to get more spawn positions than we have")
+		return positions
+	spawn_points.shuffle()
+	for i in range(0, number):
+		positions.append(spawn_points[i].global_position)
+	return positions

@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://do2818u4a86j5"]
+
+[ext_resource type="Texture2D" uid="uid://dt30mr5fwjxai" path="res://assets/art/map.png" id="1_a1ro3"]
+
+[node name="Map" type="Sprite2D"]
+position = Vector2(9, 113)
+texture = ExtResource("1_a1ro3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(329, -177)
+polygon = PackedVector2Array(2, 0, 448, 6, 449, 353, 269, 358, -3, 349, -15, 131)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(244, -175)
+polygon = PackedVector2Array(-3, -4, -890, -14, -889, 271, -1386, 271, -1365, 402, -1361, 559, 10, 568)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(862, -165)
+polygon = PackedVector2Array(-2, -2, 323, 9, 340, 353, -4, 342)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-170, -250)
+polygon = PackedVector2Array(-10, -1, 1361, 27, 1356, -372, 908, -372, 816, -317, 734, -212, 605, -163, 413, -177, 295, -212, 204, -405, 99, -418, 19, -355, -16, -236)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-246, -254)
+polygon = PackedVector2Array(-3, 6, 8, -287, 54, -386, 143, -450, 274, -485, 335, -452, 409, -349, 428, -290, 536, -233, 648, -230, 744, -250, 849, -342, 901, -423, 1008, -453, 1165, -459, 1393, -448, 1528, -452, 1651, -452, 1667, -799, -1168, -824, -1179, -428, -952, -393, -397, -393, -396, 0)
+
+[node name="SpawnPositions" type="Node2D" parent="."]
+
+[node name="spawn1" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-1151, -607)
+
+[node name="spawn2" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-694, -610)
+
+[node name="spawn3" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-689, -218)
+
+[node name="spawn4" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-692, 53)
+
+[node name="spawn5" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-1167, 65)
+
+[node name="spawn6" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-1150, 427)
+
+[node name="spawn7" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-970, 423)
+
+[node name="spawn8" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-961, 811)
+
+[node name="spawn9" type="Node2D" parent="SpawnPositions"]
+position = Vector2(837, 817)
+
+[node name="spawn10" type="Node2D" parent="SpawnPositions"]
+position = Vector2(823, 215)
+
+[node name="spawn11" type="Node2D" parent="SpawnPositions"]
+position = Vector2(1239, 223)
+
+[node name="spawn12" type="Node2D" parent="SpawnPositions"]
+position = Vector2(1233, -189)
+
+[node name="spawn13" type="Node2D" parent="SpawnPositions"]
+position = Vector2(1236, -659)
+
+[node name="spawn14" type="Node2D" parent="SpawnPositions"]
+position = Vector2(816, -198)
+
+[node name="spawn15" type="Node2D" parent="SpawnPositions"]
+position = Vector2(291, -201)
+
+[node name="spawn16" type="Node2D" parent="SpawnPositions"]
+position = Vector2(-210, -220)
+
+[node name="spawn17" type="Node2D" parent="SpawnPositions"]
+position = Vector2(299, 420)
