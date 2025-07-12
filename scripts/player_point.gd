@@ -46,8 +46,8 @@ func _physics_process(_delta: float) -> void:
 
 	if map_bounds.encloses(normalized_viewport):
 		camera.global_position = target_camera_pos
-		
-	Lobby.update_position.rpc(global_position)
+	
+	Lobby.update_position.rpc_id(1, global_position)
 
 func _input(event):
 	if event is InputEventMouseButton:
