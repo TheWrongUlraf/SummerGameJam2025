@@ -15,6 +15,10 @@ config/version="0.1"
 run/main_scene="uid://bktmqfbqtxv0"
 config/features=PackedStringArray("4.4", "Mobile")
 
+[autoload]
+
+Lobby="*res://utils/lobby.gd"
+
 [display]
 
 window/size/viewport_width=1080
