@@ -7,9 +7,7 @@
 script = ExtResource("1_at1r8")
 
 [node name="Map" type="Sprite2D" parent="."]
-position = Vector2(-5, 421)
-scale = Vector2(4.30874, 4.30874)
 texture = ExtResource("1_rldyv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.325, 0.325)
+zoom = Vector2(0.2, 0.2)

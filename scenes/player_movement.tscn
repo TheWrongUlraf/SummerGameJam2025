@@ -10,7 +10,6 @@ radius = 15.5081
 [node name="Node2D" type="Node2D"]
 
 [node name="Map" type="Sprite2D" parent="."]
-position = Vector2(676, 730)
 texture = ExtResource("1_ko2nw")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Map"]
@@ -36,7 +35,7 @@ position = Vector2(-246, -254)
 polygon = PackedVector2Array(-3, 6, 8, -287, 54, -386, 143, -450, 274, -485, 335, -452, 409, -349, 428, -290, 536, -233, 648, -230, 744, -250, 849, -342, 901, -423, 1008, -453, 1165, -459, 1393, -448, 1528, -452, 1651, -452, 1667, -799, -1168, -824, -1179, -428, -952, -393, -397, -393, -396, 0)
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(954.5, 530.5)
+position = Vector2(281, -196)
 script = ExtResource("3_tn4kn")
 
 [node name="PlayerPoint" type="Sprite2D" parent="CharacterBody2D"]
@@ -46,4 +45,4 @@ texture = ExtResource("1_7wc8n")
 shape = SubResource("CircleShape2D_tn4kn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(954.5, 530.5)
+position = Vector2(281, -196)
