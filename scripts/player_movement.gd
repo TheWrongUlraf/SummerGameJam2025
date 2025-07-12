@@ -22,7 +22,7 @@ func _ready() -> void:
 	nitro_active_texture = load("res://assets/art/Nitro_active.png")
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if ClientPlayer.role == Lobby.ROLE_POLICE:
 		if player.nitro_boost_active > 0:
 			nitroBoostButton.texture = nitro_active_texture
