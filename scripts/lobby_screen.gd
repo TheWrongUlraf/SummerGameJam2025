@@ -41,6 +41,7 @@ func _on_number_updated():
 
 
 func _on_connect_button_pressed() -> void:
+	$VerticalBox/ClientControls/NotConnected/ErrorText.hide()
 	Lobby.connect_to_server($VerticalBox/ClientControls/NotConnected/ServerIP.text)
 
 
@@ -63,11 +64,12 @@ func _client_on_connected():
 
 func _client_on_disconnected():
 	$VerticalBox/ClientControls/NotConnected.show()
+	$VerticalBox/ClientControls/NotConnected/ErrorText.hide()
 	$VerticalBox/ClientControls/Connected.hide()
 
 
 func _client_on_connection_error():
-	pass
+	$VerticalBox/ClientControls/NotConnected/ErrorText.show()
 
 
 func _client_on_game_started(role: int, starting_position: Vector2):

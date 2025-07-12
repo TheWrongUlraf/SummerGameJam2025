@@ -58,6 +58,13 @@ popup/item_2/id = 2
 layout_mode = 2
 text = "Connect"
 
+[node name="ErrorText" type="RichTextLabel" parent="VerticalBox/ClientControls/NotConnected"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+text = "Could not connect to the server"
+fit_content = true
+
 [node name="Connected" type="VBoxContainer" parent="VerticalBox/ClientControls"]
 visible = false
 layout_mode = 2

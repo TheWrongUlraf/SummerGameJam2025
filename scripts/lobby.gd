@@ -153,7 +153,9 @@ func connect_to_server(ip):
 		multiplayer.multiplayer_peer.close()
 
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client(ip, SERVER_PORT)
+	var result = peer.create_client(ip, SERVER_PORT)
+	if result != OK:
+		client_on_connection_error.emit()
 	multiplayer.multiplayer_peer = peer
 
 
