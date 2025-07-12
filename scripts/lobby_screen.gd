@@ -37,7 +37,11 @@ func _ready():
 
 
 func _on_number_updated():
-	$VerticalBox/ServerControls/PlayersInTheLobby.text = "Players in the lobby: " + str(Lobby.get_players_in_the_lobby_num())
+	var text = "Players in the lobby (" + str(Lobby.get_players_in_the_lobby_num()) + "):"
+	for player in Lobby.players_in_lobby:
+		text += " " + (player as Lobby.LobbyPlayerInfo).Name + ","
+	text = text.erase(text.length() - 1)
+	$VerticalBox/ServerControls/PlayersInTheLobby.text = text
 
 
 func _on_connect_button_pressed() -> void:
