@@ -5,11 +5,16 @@ extends Node
 const SERVER_PORT = 8021
 const MAX_ALLOWED_CLIENTS = 10
 
+const ROLE_RANDOM = -1
+const ROLE_POLICE = 0
+const ROLE_REBEL = 1
+
 var players_in_lobby = Array()
 
-var is_server_cached = -1
+var _is_server_cached = -1
 
 var game_scene = null
+var _client_role = ROLE_RANDOM
 
 signal server_on_player_number_updated
 
@@ -17,6 +22,11 @@ signal client_on_connected
 signal client_on_connection_error
 signal client_on_disconnected
 signal client_on_game_started
+
+class LobbyPlayerInfo:
+	var Id: int
+	var Name: String
+	var Role: int
 
 func _ready():
 	print("Initializing the networking")
@@ -85,21 +95,29 @@ func get_all_ips():
 	return ips
 
 
-func _entered_lobby(id):
+@rpc("any_peer", "call_remote", "reliable")
+func _server_on_player_ready_in_lobby(id, name, role):
 	if multiplayer.is_server():
-		players_in_lobby.append(id)
+		var player = LobbyPlayerInfo.new()
+		player.Id = id
+		player.Name = name
+		player.Role = role
+		players_in_lobby.append(player)
 		server_on_player_number_updated.emit()
 		print("Client " + str(id) + " has entered the lobby")
 
 
 func _server_only_on_client_connected(id):
 	print("Client " + str(id) + " connected")
-	_entered_lobby(id)
 
 
 func _server_only_on_client_disconnected(id):
 	print("Client " + str(id) + " disconnected")
-	players_in_lobby.erase(id)
+	for i in range(0, len(players_in_lobby)):
+		var player_info = (players_in_lobby[i] as LobbyPlayerInfo)
+		if player_info.Id == id:
+			players_in_lobby.remove_at(i)
+			break;
 	server_on_player_number_updated.emit()
 
 
@@ -119,9 +137,9 @@ func _client_only_on_server_disconnected():
 
 
 func is_server():
-	if is_server_cached == -1:
-		is_server_cached = 1 if OS.get_cmdline_args().has("-server") else 0
-	return is_server_cached == 1
+	if _is_server_cached == -1:
+		_is_server_cached = 1 if OS.get_cmdline_args().has("-server") else 0
+	return _is_server_cached == 1
 
 
 func connect_to_server(ip):
@@ -140,6 +158,10 @@ func connect_to_server(ip):
 	multiplayer.multiplayer_peer = peer
 
 
+func client_reported_lobby_ready(name, role):
+	_server_on_player_ready_in_lobby.rpc(multiplayer.get_unique_id(), name, role)
+
+
 func disconnect_from_server():
 	if multiplayer.has_multiplayer_peer():
 		multiplayer.multiplayer_peer.close()
@@ -148,16 +170,48 @@ func disconnect_from_server():
 func get_players_in_the_lobby_num():
 	return len(players_in_lobby)
 
+
 func change_to_game_scene():
 	get_tree().change_scene_to_file("res://scenes/server_game.tscn")
 	await get_tree().create_timer(0).timeout
 	game_scene = get_tree().current_scene
 
+
+func server_start_game():
+	if !is_server():
+		printerr("Don't call it from client!")
+		return
+
+	var is_police_role_assigned = false
+
+	players_in_lobby.shuffle()
+
+	for player in players_in_lobby:
+		var player_info = (player as LobbyPlayerInfo)
+		if player_info.Role == ROLE_POLICE:
+			if is_police_role_assigned == true:
+				player_info.Role = ROLE_REBEL
+			else:
+				is_police_role_assigned = true
+
+	if !is_police_role_assigned:
+		(players_in_lobby[0] as LobbyPlayerInfo).Role = ROLE_POLICE
+
+	for player in players_in_lobby:
+		var player_info = (player as LobbyPlayerInfo)
+		if player_info.Role != ROLE_POLICE:
+			player_info.Role = ROLE_REBEL
+		_start_game.rpc_id(player_info.Id, player_info.Role)
+
+
 @rpc("authority", "call_remote", "reliable")
-func start_game():
+func _start_game(role):
 	if is_server():
 		printerr("We never call this on the server duh!")
-	client_on_game_started.emit()
+	_client_role = role
+	print("Client role: " + str(_client_role))
+	client_on_game_started.emit(role)
+
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")
 func update_position(pos: Vector2):
@@ -169,4 +223,16 @@ func update_position(pos: Vector2):
 	else:
 		var sender_id = multiplayer.get_remote_sender_id()
 		game_scene.update_player_position(sender_id, pos)
-	
+
+
+
+func get_player_info(id):
+	for player in players_in_lobby:
+		var player_info = (player as LobbyPlayerInfo)
+		if player_info.Id == id:
+			return player_info
+	return null
+
+
+func client_get_role():
+	return _client_role

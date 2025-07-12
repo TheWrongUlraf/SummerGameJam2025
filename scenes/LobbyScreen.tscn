@@ -22,17 +22,49 @@ grow_vertical = 2
 [node name="ClientControls" type="VBoxContainer" parent="VerticalBox"]
 layout_mode = 2
 
-[node name="ServerIP" type="TextEdit" parent="VerticalBox/ClientControls"]
+[node name="NotConnected" type="VBoxContainer" parent="VerticalBox/ClientControls"]
+layout_mode = 2
+
+[node name="ServerIP" type="TextEdit" parent="VerticalBox/ClientControls/NotConnected"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 text = "192.168.1."
 
-[node name="ConnectButton" type="Button" parent="VerticalBox/ClientControls"]
+[node name="NameEdit" type="TextEdit" parent="VerticalBox/ClientControls/NotConnected"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VerticalBox/ClientControls/NotConnected"]
+layout_mode = 2
+
+[node name="RoleLabel" type="RichTextLabel" parent="VerticalBox/ClientControls/NotConnected/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Preffered role:"
+fit_content = true
+
+[node name="RoleSelector" type="OptionButton" parent="VerticalBox/ClientControls/NotConnected/HBoxContainer"]
+layout_mode = 2
+selected = 2
+item_count = 3
+popup/item_0/text = "Spy"
+popup/item_0/id = 0
+popup/item_1/text = "Police"
+popup/item_1/id = 1
+popup/item_2/text = "Random"
+popup/item_2/id = 2
+
+[node name="ConnectButton" type="Button" parent="VerticalBox/ClientControls/NotConnected"]
 layout_mode = 2
 text = "Connect"
 
-[node name="DisconnectButton" type="Button" parent="VerticalBox/ClientControls"]
+[node name="Connected" type="VBoxContainer" parent="VerticalBox/ClientControls"]
+visible = false
 layout_mode = 2
+
+[node name="DisconnectButton" type="Button" parent="VerticalBox/ClientControls/Connected"]
+layout_mode = 2
+text = "Disconnect"
 
 [node name="ServerControls" type="VBoxContainer" parent="VerticalBox"]
 layout_mode = 2
@@ -52,6 +84,6 @@ fit_content = true
 layout_mode = 2
 text = "Start game [DEBUG]"
 
-[connection signal="pressed" from="VerticalBox/ClientControls/ConnectButton" to="." method="_on_connect_button_pressed"]
-[connection signal="pressed" from="VerticalBox/ClientControls/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="pressed" from="VerticalBox/ClientControls/NotConnected/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="VerticalBox/ClientControls/Connected/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
 [connection signal="pressed" from="VerticalBox/ServerControls/StartGameDebugButton" to="." method="_on_start_game_debug_button_pressed"]
