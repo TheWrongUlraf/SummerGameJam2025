@@ -12,7 +12,7 @@ config_version=5
 
 config/name="SummerGameJam2025"
 config/version="0.1"
-run/main_scene="uid://isvo3q10tf08"
+run/main_scene="uid://2h6s5sy2i333"
 config/features=PackedStringArray("4.4", "Mobile")
 
 [autoload]
