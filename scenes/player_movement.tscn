@@ -50,25 +50,6 @@ text = "Reveal!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NitroBoost" type="Sprite2D" parent="Camera2D"]
-modulate = Color(0.911971, 0.694306, 0.363181, 1)
-position = Vector2(765.063, -424.063)
-scale = Vector2(0.906738, 0.906738)
-texture = ExtResource("4_fhu7s")
-region_rect = Rect2(1, 0, 20, 20)
-script = ExtResource("4_7ybod")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/NitroBoost"]
-modulate = Color(0, 0, 0, 1)
-offset_left = -114.0
-offset_top = -96.0
-offset_right = 111.0
-offset_bottom = 105.0
-theme_override_font_sizes/normal_font_size = 55
-text = "Nitro boost!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 offset = Vector2(550, 180)
 scale = Vector2(0.3, 0.3)
@@ -83,5 +64,27 @@ offset_bottom = 40.0
 [node name="InGameHud" parent="CanvasLayer/Control" instance=ExtResource("7_5vuae")]
 layout_mode = 1
 
+[node name="PoliceCamera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.07, 0.07)
+
+[node name="NitroBoost" type="Sprite2D" parent="PoliceCamera2D"]
+modulate = Color(0.911971, 0.694306, 0.363181, 1)
+position = Vector2(3559, -1514)
+scale = Vector2(2.08203, 2.08203)
+texture = ExtResource("4_fhu7s")
+region_rect = Rect2(1, 0, 20, 20)
+script = ExtResource("4_7ybod")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PoliceCamera2D/NitroBoost"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -114.0
+offset_top = -96.0
+offset_right = 111.0
+offset_bottom = 105.0
+theme_override_font_sizes/normal_font_size = 55
+text = "Nitro boost!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="on_pressed" from="Camera2D/RevealButton" to="Camera2D/RevealButton" method="_on_reveal_clicked"]
-[connection signal="on_pressed" from="Camera2D/NitroBoost" to="Camera2D/NitroBoost" method="_on_nitro_clicked"]
+[connection signal="on_pressed" from="PoliceCamera2D/NitroBoost" to="PoliceCamera2D/NitroBoost" method="_on_nitro_clicked"]
