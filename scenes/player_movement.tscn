@@ -16,17 +16,19 @@ script = ExtResource("1_dlsem")
 [node name="Map" parent="." instance=ExtResource("1_tn4kn")]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(281, -196)
+position = Vector2(-490, 372)
 script = ExtResource("3_tn4kn")
 
 [node name="PlayerPoint" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(2, 2)
 texture = ExtResource("1_7wc8n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CircleShape2D_tn4kn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(281, -196)
+position = Vector2(-491, 363)
+zoom = Vector2(0.3, 0.3)
 
 [node name="RevealButton" type="Sprite2D" parent="Camera2D"]
 modulate = Color(0.53654, 0.787091, 0.823788, 1)

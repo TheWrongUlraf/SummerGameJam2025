@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://oivw1ednxf0a"]
+
+[ext_resource type="Texture2D" uid="uid://cid73bpl6t6no" path="res://assets/art/roads/plus_intersection.png" id="1_e0fup"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yp0db"]
+size = Vector2(69, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4tvob"]
+size = Vector2(17, 49)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_e0fup")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-216, 191)
+shape = SubResource("RectangleShape2D_yp0db")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(217, 190)
+shape = SubResource("RectangleShape2D_yp0db")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-190.5, 225.5)
+shape = SubResource("RectangleShape2D_4tvob")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-215, -191)
+shape = SubResource("RectangleShape2D_yp0db")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-189, -225)
+shape = SubResource("RectangleShape2D_4tvob")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(218, -188)
+shape = SubResource("RectangleShape2D_yp0db")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(191, -224)
+shape = SubResource("RectangleShape2D_4tvob")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(191, 225)
+shape = SubResource("RectangleShape2D_4tvob")

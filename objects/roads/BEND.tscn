@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj34h0nt1qrkl"]
+
+[ext_resource type="Texture2D" uid="uid://bc3f7fij6y2hw" path="res://assets/art/roads/bend.png" id="1_rnrvm"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rnrvm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-181, 250)
+polygon = PackedVector2Array(0, 0, -17, 0, -15, -213, -9, -251, 5, -307, 33, -365, 52, -390, 91, -419, 122, -435, 175, -449, 230, -451, 301, -449, 431, -450, 431, -434, 201, -435, 175, -433, 126, -419, 97, -404, 61, -377, 43, -356, 22, -309, 8, -254, 2, -214, -1, -150)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(199, 250)
+polygon = PackedVector2Array(0, 0, -17, 0, -13, -20, -5, -41, 9, -56, 32, -64, 51, -64, 51, -49, 33, -49, 20, -45, 10, -35, 0, -17)

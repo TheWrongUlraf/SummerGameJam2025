@@ -40,7 +40,7 @@ func _ready() -> void:
 		var playerSprite = Sprite2D.new()
 		if player_info.Role == Lobby.ROLE_POLICE:
 			playerSprite.texture = load("res://assets/art/PoliceCar.png")
-			playerSprite.scale = Vector2(0.2, 0.2)
+			playerSprite.scale = Vector2(0.5, 0.5)
 			playerSprite.visible = true
 		else:
 			playerSprite.texture = load("res://assets/art/point.png")

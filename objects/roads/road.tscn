@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3q78tnhhf4pn"]
+
+[ext_resource type="Script" uid="uid://bjr8jwcc2l7ol" path="res://scripts/road.gd" id="1_jytbm"]
+[ext_resource type="PackedScene" uid="uid://dohif6v3x02u1" path="res://objects/roads/STRAIGHT.tscn" id="2_pdq8s"]
+
+[node name="road" type="Node2D"]
+script = ExtResource("1_jytbm")
+
+[node name="Node2D" parent="." instance=ExtResource("2_pdq8s")]

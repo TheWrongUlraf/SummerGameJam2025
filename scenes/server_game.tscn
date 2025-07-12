@@ -9,6 +9,7 @@ script = ExtResource("1_at1r8")
 [node name="Map" parent="." instance=ExtResource("2_q75wl")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.2, 0.2)
+position = Vector2(-444, 466)
+zoom = Vector2(0.065, 0.065)
 
 [node name="Audio" type="AudioStreamPlayer2D" parent="."]

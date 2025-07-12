@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dohif6v3x02u1"]
+
+[ext_resource type="Texture2D" uid="uid://do4qmpddtx4gg" path="res://assets/art/roads/straight.png" id="1_0ijp6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ijp6"]
+size = Vector2(18, 500.5)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0ijp6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(-190, -0.25)
+shape = SubResource("RectangleShape2D_0ijp6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(192, 0)
+shape = SubResource("RectangleShape2D_0ijp6")

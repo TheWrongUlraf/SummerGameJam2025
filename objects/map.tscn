@@ -1,82 +1,420 @@
-[gd_scene load_steps=2 format=3 uid="uid://do2818u4a86j5"]
+[gd_scene load_steps=5 format=3 uid="uid://do2818u4a86j5"]
 
-[ext_resource type="Texture2D" uid="uid://dt30mr5fwjxai" path="res://assets/art/map.png" id="1_a1ro3"]
+[ext_resource type="Texture2D" uid="uid://c8yiblhj5io1v" path="res://assets/art/buildings/Cityhall.png" id="2_73f5v"]
+[ext_resource type="PackedScene" uid="uid://d3q78tnhhf4pn" path="res://objects/roads/road.tscn" id="2_626k8"]
+[ext_resource type="Texture2D" uid="uid://cx4xhll6f8ri6" path="res://assets/art/buildings/House_01.png" id="3_q2ejr"]
+[ext_resource type="Texture2D" uid="uid://chvcpfr40ss5q" path="res://assets/art/buildings/House_02.png" id="4_bp71e"]
 
-[node name="Map" type="Sprite2D"]
-position = Vector2(9, 113)
-texture = ExtResource("1_a1ro3")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(329, -177)
-polygon = PackedVector2Array(2, 0, 448, 6, 449, 353, 269, 358, -3, 349, -15, 131)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(244, -175)
-polygon = PackedVector2Array(-3, -4, -890, -14, -889, 271, -1386, 271, -1365, 402, -1361, 559, 10, 568)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(862, -165)
-polygon = PackedVector2Array(-2, -2, 323, 9, 340, 353, -4, 342)
-
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(-170, -250)
-polygon = PackedVector2Array(-10, -1, 1361, 27, 1356, -372, 908, -372, 816, -317, 734, -212, 605, -163, 413, -177, 295, -212, 204, -405, 99, -418, 19, -355, -16, -236)
-
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(-246, -254)
-polygon = PackedVector2Array(-3, 6, 8, -287, 54, -386, 143, -450, 274, -485, 335, -452, 409, -349, 428, -290, 536, -233, 648, -230, 744, -250, 849, -342, 901, -423, 1008, -453, 1165, -459, 1393, -448, 1528, -452, 1651, -452, 1667, -799, -1168, -824, -1179, -428, -952, -393, -397, -393, -396, 0)
+[node name="Map" type="Node2D"]
 
 [node name="SpawnPositions" type="Node2D" parent="."]
+position = Vector2(9, -389)
 
 [node name="spawn1" type="Node2D" parent="SpawnPositions"]
-position = Vector2(-1151, -607)
+position = Vector2(-1009, -613)
 
 [node name="spawn2" type="Node2D" parent="SpawnPositions"]
-position = Vector2(-694, -610)
+position = Vector2(-509, -613)
 
 [node name="spawn3" type="Node2D" parent="SpawnPositions"]
-position = Vector2(-689, -218)
+position = Vector2(-509, -113)
 
 [node name="spawn4" type="Node2D" parent="SpawnPositions"]
-position = Vector2(-692, 53)
+position = Vector2(-509, 387)
 
 [node name="spawn5" type="Node2D" parent="SpawnPositions"]
-position = Vector2(-1167, 65)
+position = Vector2(-1509, -113)
 
 [node name="spawn6" type="Node2D" parent="SpawnPositions"]
-position = Vector2(-1150, 427)
+position = Vector2(-1509, 1387)
 
 [node name="spawn7" type="Node2D" parent="SpawnPositions"]
-position = Vector2(-970, 423)
+position = Vector2(491, 1887)
 
 [node name="spawn8" type="Node2D" parent="SpawnPositions"]
 position = Vector2(-961, 811)
 
 [node name="spawn9" type="Node2D" parent="SpawnPositions"]
-position = Vector2(837, 817)
+position = Vector2(1991, 1387)
 
 [node name="spawn10" type="Node2D" parent="SpawnPositions"]
-position = Vector2(823, 215)
+position = Vector2(1491, 887)
 
 [node name="spawn11" type="Node2D" parent="SpawnPositions"]
-position = Vector2(1239, 223)
+position = Vector2(1991, -113)
 
 [node name="spawn12" type="Node2D" parent="SpawnPositions"]
-position = Vector2(1233, -189)
+position = Vector2(2491, -1113)
 
 [node name="spawn13" type="Node2D" parent="SpawnPositions"]
-position = Vector2(1236, -659)
+position = Vector2(991, -1113)
 
 [node name="spawn14" type="Node2D" parent="SpawnPositions"]
-position = Vector2(816, -198)
+position = Vector2(-2509, 387)
 
 [node name="spawn15" type="Node2D" parent="SpawnPositions"]
-position = Vector2(291, -201)
+position = Vector2(-2509, -1113)
 
 [node name="spawn16" type="Node2D" parent="SpawnPositions"]
-position = Vector2(-210, -220)
+position = Vector2(-509, 2387)
 
 [node name="spawn17" type="Node2D" parent="SpawnPositions"]
-position = Vector2(299, 420)
+position = Vector2(-3009, 887)
+
+[node name="roads" type="Node2D" parent="."]
+position = Vector2(9, -389)
+
+[node name="road2" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(491, 387)
+
+[node name="road3" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(491, 887)
+
+[node name="road4" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(491, 1387)
+
+[node name="road5" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(491, -613)
+road_type = 2
+
+[node name="road6" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-9, -613)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road8" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1009, -613)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road7" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-509, -613)
+road_type = 2
+
+[node name="road9" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-509, -113)
+
+[node name="road10" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-509, 387)
+rotation = 3.14159
+road_type = 2
+round_rotation = 180
+
+[node name="road11" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1509, -613)
+rotation = 4.71239
+road_type = 2
+round_rotation = 270
+
+[node name="road12" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1509, -113)
+
+[node name="road13" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1509, 387)
+rotation = 1.5708
+road_type = 2
+round_rotation = 90
+
+[node name="road14" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1009, 387)
+road_type = 1
+
+[node name="road15" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1509, 1387)
+
+[node name="road16" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1509, 887)
+
+[node name="road17" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1009, 887)
+rotation = 4.71239
+road_type = 1
+round_rotation = 270
+
+[node name="road18" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-509, 887)
+road_type = 2
+
+[node name="road19" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-509, 1387)
+
+[node name="road20" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-509, 2387)
+
+[node name="road21" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-509, 1887)
+rotation = 4.71239
+road_type = 3
+round_rotation = 270
+
+[node name="road22" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-9, 1887)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road23" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(991, -113)
+rotation = 4.71239
+road_type = 1
+round_rotation = 270
+
+[node name="road24" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(991, -613)
+rotation = 1.5708
+road_type = 2
+round_rotation = 90
+
+[node name="road25" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(991, -1113)
+road_type = 1
+
+[node name="road26" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-2009, 387)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road27" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-2509, 387)
+rotation = 4.71239
+road_type = 2
+round_rotation = 270
+
+[node name="road28" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-2509, 887)
+rotation = 3.14159
+road_type = 1
+round_rotation = 180
+
+[node name="road29" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-3009, 887)
+rotation = 4.71239
+road_type = 1
+round_rotation = 270
+
+[node name="road30" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-3009, 387)
+
+[node name="road31" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-2509, -113)
+rotation = 1.5708
+road_type = 2
+round_rotation = 90
+
+[node name="road32" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-2509, -613)
+
+[node name="road33" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-2509, -1113)
+road_type = 2
+
+[node name="road34" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-2009, -1113)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road35" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1509, -1113)
+rotation = 1.5708
+road_type = 1
+round_rotation = 90
+
+[node name="road36" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-3009, -1113)
+road_type = 1
+
+[node name="road37" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-3009, -613)
+
+[node name="road38" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-3009, -113)
+rotation = 4.71239
+road_type = 2
+round_rotation = 270
+
+[node name="road39" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1009, 1887)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road40" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-1509, 1887)
+rotation = 4.71239
+road_type = 1
+round_rotation = 270
+
+[node name="road41" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-509, 2887)
+rotation = 4.71239
+road_type = 1
+round_rotation = 270
+
+[node name="road42" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-9, 2887)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road43" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(491, 2887)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road44" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(991, 2887)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road45" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1491, 2387)
+
+[node name="road46" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1491, 2887)
+rotation = 3.14159
+road_type = 1
+round_rotation = 180
+
+[node name="road47" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(2491, 1387)
+rotation = 3.14159
+road_type = 1
+round_rotation = 180
+
+[node name="road48" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(2491, 887)
+
+[node name="road49" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(2491, 387)
+road_type = 2
+
+[node name="road50" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1991, 387)
+rotation = 4.71239
+road_type = 1
+round_rotation = 270
+
+[node name="road51" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(2991, -1113)
+rotation = 1.5708
+road_type = 1
+round_rotation = 90
+
+[node name="road52" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(2991, 387)
+rotation = 3.14159
+road_type = 1
+round_rotation = 180
+
+[node name="road53" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(2991, -113)
+
+[node name="road54" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(2991, -613)
+
+[node name="road55" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(491, 1887)
+rotation = 3.14159
+road_type = 2
+round_rotation = 180
+
+[node name="road56" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(991, 1887)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road57" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1491, 1887)
+rotation = 1.5708
+road_type = 2
+round_rotation = 90
+
+[node name="road58" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1491, 887)
+
+[node name="road59" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1991, 1387)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road60" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1491, 1387)
+rotation = 4.71239
+road_type = 2
+round_rotation = 270
+
+[node name="road61" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1491, 387)
+
+[node name="road62" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1491, -113)
+road_type = 2
+
+[node name="road63" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1991, -613)
+
+[node name="road64" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1991, -113)
+rotation = 1.5708
+road_type = 2
+round_rotation = 90
+
+[node name="road65" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1991, -1113)
+road_type = 2
+
+[node name="road66" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(2491, -1113)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road67" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(1491, -1113)
+rotation = 1.5708
+round_rotation = 90
+
+[node name="road68" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-9, 887)
+rotation = 3.14159
+road_type = 1
+round_rotation = 180
+
+[node name="road69" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(-9, 387)
+rotation = 1.5708
+road_type = 1
+round_rotation = 90
+
+[node name="road" parent="roads" instance=ExtResource("2_626k8")]
+position = Vector2(491, -111)
+
+[node name="buildings" type="Node2D" parent="."]
+
+[node name="House01" type="Sprite2D" parent="buildings"]
+position = Vector2(1000, 1000)
+texture = ExtResource("3_q2ejr")
+
+[node name="House02" type="Sprite2D" parent="buildings"]
+position = Vector2(-1000, 1000)
+texture = ExtResource("4_bp71e")
+
+[node name="House03" type="Sprite2D" parent="buildings"]
+position = Vector2(-2000, 500)
+texture = ExtResource("3_q2ejr")
+
+[node name="House04" type="Sprite2D" parent="buildings"]
+position = Vector2(-1000, -1500)
+texture = ExtResource("4_bp71e")
+
+[node name="House05" type="Sprite2D" parent="buildings"]
+position = Vector2(2500, -500)
+texture = ExtResource("3_q2ejr")
+
+[node name="Cityhall" type="Sprite2D" parent="buildings"]
+position = Vector2(-2500, 1500)
+texture = ExtResource("2_73f5v")
+
+[node name="Cityhall2" type="Sprite2D" parent="buildings"]
+position = Vector2(2500, 1500)
+texture = ExtResource("2_73f5v")
+
+[node name="Cityhall3" type="Sprite2D" parent="buildings"]
+position = Vector2(-4000, -1500)
+texture = ExtResource("2_73f5v")

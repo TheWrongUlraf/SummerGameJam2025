@@ -10,7 +10,7 @@ var target_camera_pos: Vector2
 var target_camera_pos_initialized := false
 
 @onready var camera: Camera2D = get_node("../Camera2D")
-@onready var map: Sprite2D = get_node("../Map")
+@onready var map: Node2D = get_node("../Map")
 
 func _ready():
 	global_position = ClientPlayer.player_pos
@@ -43,8 +43,8 @@ func _physics_process(_delta: float) -> void:
 
 	var normalized_viewport := get_viewport().get_canvas_transform().affine_inverse()*get_viewport_rect()
 	normalized_viewport.position = target_camera_pos - normalized_viewport.size/2
-	var map_half_width = map.get_rect().size.x / 2
-	var map_half_height = map.get_rect().size.y / 2
+	var map_half_width = 5000 / 2
+	var map_half_height = 5000 / 2
 	
 	target_camera_pos.x = clamp(
 		target_camera_pos.x,
