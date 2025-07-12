@@ -6,6 +6,10 @@ extends Node2D
 @onready var policeCamera: Camera2D = get_node("PoliceCamera2D")
 @onready var player = get_node("CharacterBody2D")
 
+var nitro_texture : Resource
+var nitro_disabled_texture : Resource
+var nitro_active_texture : Resource
+
 func _ready() -> void:
 	if ClientPlayer.role != Lobby.ROLE_REBEL:
 		revealButton.get_parent().remove_child(revealButton)
@@ -13,13 +17,16 @@ func _ready() -> void:
 		policeCamera.enabled = true
 	if ClientPlayer.role != Lobby.ROLE_POLICE:
 		nitroBoostButton.get_parent().remove_child(nitroBoostButton)
+	nitro_texture = load("res://assets/art/Nitro.png")
+	nitro_disabled_texture = load("res://assets/art/Nitro_gray.png")
+	nitro_active_texture = load("res://assets/art/Nitro_active.png")
 	
 
 func _process(delta: float) -> void:
 	if ClientPlayer.role == Lobby.ROLE_POLICE:
 		if player.nitro_boost_active > 0:
-			nitroBoostButton.modulate = Color("00ff00")
+			nitroBoostButton.texture = nitro_active_texture
 		elif player.nitro_boost_cooldown > 0:
-			nitroBoostButton.modulate = Color("ff0000")
+			nitroBoostButton.texture = nitro_disabled_texture
 		else:
-			nitroBoostButton.modulate = Color("e9b15d")
+			nitroBoostButton.texture = nitro_texture
