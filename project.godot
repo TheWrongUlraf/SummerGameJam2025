@@ -12,7 +12,7 @@ config_version=5
 
 config/name="SummerGameJam2025"
 config/version="0.1"
-run/main_scene="uid://bktmqfbqtxv0"
+run/main_scene="uid://0pw6q6h7yq0i"
 config/features=PackedStringArray("4.4", "Mobile")
 
 [autoload]
@@ -25,6 +25,7 @@ window/size/viewport_width=1080
 window/size/viewport_height=1920
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
+window/stretch/scale=3.0
 window/handheld/orientation=1
 
 [rendering]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://0pw6q6h7yq0i"]
+
+[ext_resource type="Script" uid="uid://y1silb1v38ji" path="res://scenes/screens/lobby_screen.gd" id="1_33cb4"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_33cb4")
+
+[node name="VerticalBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ClientControls" type="VBoxContainer" parent="VerticalBox"]
+layout_mode = 2
+
+[node name="ServerIP" type="TextEdit" parent="VerticalBox/ClientControls"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "192.168.1."
+
+[node name="ConnectButton" type="Button" parent="VerticalBox/ClientControls"]
+layout_mode = 2
+text = "Connect"
+
+[node name="DisconnectButton" type="Button" parent="VerticalBox/ClientControls"]
+layout_mode = 2
+
+[node name="ServerControls" type="VBoxContainer" parent="VerticalBox"]
+layout_mode = 2
+
+[node name="IPToConnectTo" type="RichTextLabel" parent="VerticalBox/ServerControls"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "IP to connect to: "
+fit_content = true
+
+[node name="PlayersInTheLobby" type="RichTextLabel" parent="VerticalBox/ServerControls"]
+layout_mode = 2
+text = "Players in the lobby"
+fit_content = true
+
+[node name="StartGameDebugButton" type="Button" parent="VerticalBox/ServerControls"]
+layout_mode = 2
+text = "Start game [DEBUG]"
+
+[connection signal="pressed" from="VerticalBox/ClientControls/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="VerticalBox/ClientControls/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="pressed" from="VerticalBox/ServerControls/StartGameDebugButton" to="." method="_on_start_game_debug_button_pressed"]
