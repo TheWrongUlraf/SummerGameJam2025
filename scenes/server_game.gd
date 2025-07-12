@@ -49,6 +49,8 @@ func _ready() -> void:
 	
 		if player_info.Role == Lobby.ROLE_POLICE:
 			cop_player = game_player_info
+	
+	_generate_random_emojis()
 
 func update_player_position(player_id: int, pos: Vector2):
 	if players.has(player_id):
@@ -134,3 +136,15 @@ func _get_randomized_spawn_points(number):
 func _on_restart_button_pressed() -> void:
 	Lobby.client_restart_game.rpc()
 	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
+
+
+func _generate_random_emojis():
+	var positions = Array()
+	var emojis = Array()
+	var reveal_times = Array()
+	var spawn_points = $Map/SpawnPositions.get_children()
+	for spawn_point in spawn_points:
+		positions.append(spawn_point.global_position)
+		emojis.append(randi() % 3)
+		reveal_times.append(randi() % 3 + 1)
+	Lobby.place_emojis(positions, emojis, reveal_times)

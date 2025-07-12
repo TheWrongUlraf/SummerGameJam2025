@@ -17,6 +17,8 @@ var game_scene = null
 var _client_role = ROLE_RANDOM
 var _client_name = ""
 
+var scheduled_emojis = Array()
+
 signal server_on_player_number_updated
 
 signal client_on_connected
@@ -29,6 +31,11 @@ class LobbyPlayerInfo:
 	var Id: int
 	var Name: String
 	var Role: int
+
+class ScheduledEmoji:
+	var Pos: Vector2
+	var Idx: int
+	var EmojiTime: int
 
 # i'm too lazy to create a new global for constants
 const EMOJI_COOLDOWN_TIME_SEC = 10.0
@@ -241,7 +248,7 @@ func server_place_emoji_on_map(sender_id, index):
 
 @rpc("call_remote", "reliable")
 func _client_place_emoji_on_map(position, index):
-	client_on_player_put_emoji.emit(position, index)
+	client_on_player_put_emoji.emit(position, index, 0)
 
 @rpc("any_peer", "call_remote", "reliable")
 func nitro_boost_activated():
@@ -252,6 +259,29 @@ func nitro_boost_activated():
 @rpc("authority", "call_remote", "reliable")
 func client_restart_game():
 	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
+
+
+func place_emojis(positions, emojis, reveal_times):
+	_place_emojis.rpc(positions, emojis, reveal_times)
+
+
+@rpc("authority", "call_remote", "reliable")
+func _place_emojis(positions, emojis, reveal_times):
+	if len(positions) != len(emojis) || len(emojis) != len(reveal_times):
+		printerr("Array sizes don't match")
+		return
+
+	if client_on_player_put_emoji.has_connections():
+		for i in range(0, len(positions)):
+			client_on_player_put_emoji.emit(positions[i], emojis[i], reveal_times[i])
+	else:
+		for i in range(0, len(positions)):
+			var emoji = ScheduledEmoji.new()
+			emoji.Pos = positions[i]
+			emoji.Idx = emojis[i]
+			emoji.EmojiTime = reveal_times[i]
+			scheduled_emojis.append(emoji)
+
 
 func get_player_info(id):
 	for player in players_in_lobby:
@@ -267,10 +297,9 @@ func client_get_role():
 
 func get_client_name():
 	return _client_name
-	
+
 func team_wins(role: int):
 	for i in range(0, len(players_in_lobby)):
 		var player = Lobby.players_in_lobby[i]
 		var player_info = (player as LobbyPlayerInfo)
 		Lobby._team_wins.rpc_id(player_info.Id, role)
-		
