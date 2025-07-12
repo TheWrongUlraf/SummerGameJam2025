@@ -9,6 +9,9 @@ var target_position: Vector2
 var target_camera_pos: Vector2
 var target_camera_pos_initialized := false
 
+var nitro_boost_active: float = 0
+var nitro_boost_cooldown: float = 0
+
 @onready var camera: Camera2D = get_node("../Camera2D")
 @onready var map: Node2D = get_node("../Map")
 
@@ -26,9 +29,14 @@ func _physics_process(_delta: float) -> void:
 		
 	if dragged:
 		target_position = canvas_pos
-		velocity += (target_position - global_position).normalized() * PLAYER_SPEED
-		if velocity.length() > PLAYER_MAX_SPEED:
-			velocity = velocity.normalized() * PLAYER_MAX_SPEED
+		var playerSpeed = PLAYER_SPEED
+		var playerMaxSpeed = PLAYER_MAX_SPEED
+		if nitro_boost_active > 0:
+			playerSpeed *= 2.0
+			playerMaxSpeed *= 2.0
+		velocity += (target_position - global_position).normalized() * playerSpeed
+		if velocity.length() > playerMaxSpeed:
+			velocity = velocity.normalized() * playerMaxSpeed
 	else:
 		if velocity.length() > 0:
 			if velocity.length() < 0.1:
@@ -37,6 +45,13 @@ func _physics_process(_delta: float) -> void:
 				velocity -= velocity.normalized() * PLAYER_SLOWDOWN_SPEED
 		target_position = global_position
 	move_and_slide()
+	
+	if nitro_boost_active > 0:
+		nitro_boost_active -= _delta
+		
+	if nitro_boost_cooldown > 0:
+		nitro_boost_cooldown -= _delta
+		
 	
 	var smoothing = 50
 	target_camera_pos = (target_camera_pos*smoothing + global_position)/(smoothing + 1)
