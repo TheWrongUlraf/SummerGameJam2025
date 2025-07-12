@@ -1,4 +1,8 @@
-extends Sprite2D
+extends CharacterBody2D
+
+var PLAYER_SPEED = 10
+var PLAYER_MAX_SPEED = PLAYER_SPEED * 25
+var PLAYER_SLOWDOWN_SPEED = PLAYER_SPEED * 2
 
 var dragged := false
 var target_position: Vector2
@@ -8,7 +12,11 @@ var target_camera_pos_initialized := false
 @onready var camera: Camera2D = get_node("../Camera2D")
 @onready var map: Sprite2D = get_node("../Map")
 
-func _process(delta: float) -> void:
+func _ready():
+	target_position = global_position
+
+
+func _physics_process(delta: float) -> void:
 	var canvas_pos : Vector2 = get_global_mouse_position()
 	
 	if not target_camera_pos_initialized:
@@ -17,11 +25,19 @@ func _process(delta: float) -> void:
 		
 	if dragged:
 		target_position = canvas_pos
-			
-	var smoothing = 100
+		velocity += (target_position - global_position).normalized() * PLAYER_SPEED
+		if velocity.length() > PLAYER_MAX_SPEED:
+			velocity = velocity.normalized() * PLAYER_MAX_SPEED
+	else:
+		if velocity.length() > 0:
+			if velocity.length() < 0.1:
+				velocity = Vector2.ZERO
+			else:
+				velocity -= velocity.normalized() * PLAYER_SLOWDOWN_SPEED
+		target_position = global_position
+	move_and_slide()
 	
-	global_position = (global_position*smoothing + target_position)/(smoothing + 1)
-	
+	var smoothing = 50
 	target_camera_pos = (target_camera_pos*smoothing + global_position)/(smoothing + 1)
 
 	var normalized_viewport := get_viewport().get_canvas_transform().affine_inverse()*get_viewport_rect()
