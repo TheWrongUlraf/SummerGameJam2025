@@ -66,7 +66,8 @@ offset_bottom = 40.0
 layout_mode = 1
 
 [node name="PoliceCamera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.07, 0.07)
+position = Vector2(-222, 486)
+zoom = Vector2(0.2, 0.2)
 
 [node name="NitroBoost" type="Sprite2D" parent="PoliceCamera2D"]
 position = Vector2(3559, -1514)
