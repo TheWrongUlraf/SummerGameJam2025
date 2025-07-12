@@ -6,7 +6,7 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Map" type="Sprite2D" parent="."]
 position = Vector2(-5, 421)
 scale = Vector2(4.30874, 4.30874)
 texture = ExtResource("1_ko2nw")
