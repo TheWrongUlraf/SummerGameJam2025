@@ -30,6 +30,9 @@ class LobbyPlayerInfo:
 	var Name: String
 	var Role: int
 
+# i'm too lazy to create a new global for constants
+const EMOJI_COOLDOWN_TIME_SEC = 10.0
+
 func _ready():
 	print("Initializing the networking")
 	var ip = _get_ip()

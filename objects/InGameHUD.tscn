@@ -44,3 +44,7 @@ layout_mode = 2
 
 [node name="Emoji3Button" parent="RebelHud/HBoxContainer/VBoxContainer" instance=ExtResource("1_lwrg5")]
 layout_mode = 2
+
+[node name="EmojiCooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="EmojiCooldownTimer" to="." method="_on_emoji_cooldown_timer_timeout"]
