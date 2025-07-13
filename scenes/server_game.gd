@@ -138,13 +138,14 @@ func _check_win_conditions():
 					var teleport_target : Vector2 = spawnPoints[0]
 					player.reveal_cooldown = 0 # Make sure no longer revealed
 					player.caught_cooldown = 5 # Player can not be caught the next 5 seconds
-					
+
 					player.player_node.global_position = teleport_target
 					Lobby.teleport.rpc_id(player_id, player_id, teleport_target)
 
-					stage -= 1
-					_choose_next_objectives()
-					progressBar.value = stage
+					if stage > 0:
+						stage -= 1
+						progressBar.value = stage
+						_choose_next_objectives()
 					police_catches += 1
 					progressBarPolice.value = police_catches
 					if police_catches >= police_catches_to_win:
@@ -171,8 +172,9 @@ func _check_win_conditions():
 		if revealed_rebels_closeby >= rebels:
 			stage += 1
 			progressBar.value = stage
-			police_catches +- 1
-			progressBarPolice.value = police_catches
+			if police_catches >= 0:
+				police_catches -= 1
+				progressBarPolice.value = police_catches
 			rebelProgressAudio.play()
 			if stage >= max_stages:
 				Lobby.team_wins(Lobby.ROLE_REBEL)
