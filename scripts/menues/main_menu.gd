@@ -29,11 +29,14 @@ func _on_number_updated():
 	for child in player_list.get_children():
 		player_list.remove_child(child)
 	
+	var party_leader_name = Lobby.server_get_party_leader_name()
 	for player in Lobby.players_in_lobby:
 		var new_record = player_record.instantiate()
-		#new_record.get_node("Sprite2D").texture = preload("")
-		new_record.get_node("Name").text = (player as Lobby.LobbyPlayerInfo).Name
+		var name = (player as Lobby.LobbyPlayerInfo).Name
 		
+		#new_record.get_node("Sprite2D").texture = preload("")
+		new_record.get_node("Name").text = name
+		new_record.get_node("Panel").visible = name == party_leader_name
 		player_list.add_child(new_record)
 
 
