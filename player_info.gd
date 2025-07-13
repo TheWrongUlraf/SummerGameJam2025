@@ -7,6 +7,7 @@ var role: int
 var caught: bool = false
 var caught_cooldown: float = 0
 var reveal_cooldown: float = 0
+var detected_cooldown: float = 0
 var name:= "N/A"
 var last_placed_emoji_time: float = 0.0
 var icon_id = 0
@@ -24,6 +25,8 @@ func _process(delta: float):
 		reveal_cooldown -= delta
 	if caught_cooldown > 0:
 		caught_cooldown -= delta
+	if detected_cooldown > 0:
+		detected_cooldown -= delta
 
 func is_revealed() -> bool:
 	return reveal_cooldown > 0

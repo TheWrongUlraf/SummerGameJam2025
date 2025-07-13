@@ -3,10 +3,18 @@ extends Node2D
 @onready var audio: AudioStreamPlayer2D = get_node("Audio")
 @onready var rebelProgressAudio: AudioStreamPlayer = get_node("RebelProgressAudio")
 @onready var nitroBoostAudio: AudioStreamPlayer = get_node("NitroBoostAudio")
+@onready var policeDetectorAudio: AudioStreamPlayer = get_node("PoliceDetectorAudio")
 @onready var progressBar: TextureProgressBar = get_node("CanvasLayer/MarginContainer/VBoxContainer/ProgressBar")
 @onready var progressBarPolice: TextureProgressBar = get_node("CanvasLayer/MarginContainer/VBoxContainer/ProgressBarPolice")
 @onready var arrestedOverlay: TextureRect = get_node("CanvasLayer/ArrestedOverlay")
 @onready var arrestedOverlayText: RichTextLabel = get_node("CanvasLayer/ArrestedOverlay/ArrestedText")
+@onready var policeDetector: Sprite2D = get_node("PoliceDetector")
+
+var police_detector_visibility = 0
+
+class DetectionCircle:
+	var center: Vector2
+	var radius: float
 
 var players := {}
 
@@ -99,15 +107,42 @@ func on_emoji_placed(player_id):
 
 func nitro_boost_activated(_player_id: int):
 	nitroBoostAudio.play()
+	
+func process_police_detector():
+	# Update sprite position
+	policeDetector.global_position = cop_player.player_node.global_position
+	var alpha = clampf(police_detector_visibility, 0.0, 1.0) 
+	policeDetector.modulate = Color(1.0, 0.0, 0.0, alpha)
+	
+	var detection := get_detection_circle()
+	for player_id in players:
+		var player : PlayerInfo = players[player_id]
+		if cop_player.player_id != player.player_id:
+			if player.detected_cooldown <= 0 and player.player_node.global_position.distance_to(detection.center) <= detection.radius:
+				player.detected_cooldown = 5
+				police_detector_visibility = 1
+				policeDetectorAudio.play()
+				
+				
+
+func get_detection_circle() -> DetectionCircle:
+	var transformedSize := (policeDetector.get_transform()*policeDetector.get_rect()).size
+	var result = DetectionCircle.new()
+	result.center = policeDetector.global_position
+	result.radius = transformedSize.x/2.0
+	return result
 
 func _process(delta: float) -> void:
 	for player in players.values():
 		player._process(delta)
+	process_police_detector()
 	_check_win_conditions()
 	if arrested_overlay_show_cooldown > 0:
 		arrested_overlay_show_cooldown -= delta
 		if arrested_overlay_show_cooldown <= 0:
 			arrestedOverlay.visible = false
+	if police_detector_visibility > 0.0:
+		police_detector_visibility -= delta
 	update_visuals()
 
 func update_visuals():
