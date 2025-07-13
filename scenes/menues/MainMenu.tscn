@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://rsklmmbuifra"]
+[gd_scene load_steps=6 format=3 uid="uid://rsklmmbuifra"]
 
 [ext_resource type="Script" uid="uid://c18iypdat3fqd" path="res://scripts/menues/main_menu.gd" id="1_1ujbe"]
 [ext_resource type="Texture2D" uid="uid://dd8jcexrqv716" path="res://assets/art/menues/title.png" id="2_16a7c"]
 [ext_resource type="PackedScene" uid="uid://c3v0eq3alnwif" path="res://objects/player_record.tscn" id="3_8xmaa"]
 [ext_resource type="FontFile" uid="uid://2a2g1uljrr17" path="res://assets/Rock3D-Regular.ttf" id="3_16a7c"]
+[ext_resource type="Texture2D" uid="uid://c0i0hi8qhrigo" path="res://assets/qrcode.png" id="5_skk4a"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -64,3 +65,10 @@ text = "192.0.1.107
 autowrap_mode = 0
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="Qrcode" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.686275)
+position = Vector2(1647, 239)
+rotation = 0.15708
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("5_skk4a")
