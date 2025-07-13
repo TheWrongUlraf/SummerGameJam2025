@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://2h6s5sy2i333"]
+[gd_scene load_steps=5 format=3 uid="uid://2h6s5sy2i333"]
 
 [ext_resource type="Script" uid="uid://6rjw8bnb5e8t" path="res://scripts/lobby_screen.gd" id="1_mx6st"]
 [ext_resource type="PackedScene" uid="uid://bae7u2awicke3" path="res://scenes/client_lobby_join_page.tscn" id="2_0mota"]
 [ext_resource type="PackedScene" uid="uid://rsklmmbuifra" path="res://scenes/menues/MainMenu.tscn" id="3_0mota"]
+[ext_resource type="AudioStream" uid="uid://2hfxijmhtg1q" path="res://assets/music/punk_pugs_title.mp3" id="4_ov801"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -26,3 +27,7 @@ layout_mode = 2
 
 [node name="ServerControls" parent="VerticalBox" instance=ExtResource("3_0mota")]
 layout_mode = 2
+
+[node name="MainMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ov801")
+volume_db = -2.3

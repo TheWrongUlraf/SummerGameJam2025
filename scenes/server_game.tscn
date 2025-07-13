@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b637ocgpgph5g"]
+[gd_scene load_steps=12 format=3 uid="uid://b637ocgpgph5g"]
 
 [ext_resource type="Script" uid="uid://ch24x42fnv1bc" path="res://scenes/server_game.gd" id="1_at1r8"]
 [ext_resource type="PackedScene" uid="uid://do2818u4a86j5" path="res://objects/map.tscn" id="2_q75wl"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://1fhvwiajgmio" path="res://assets/sounds/nitro_boost_new.ogg" id="8_gbkrc"]
 [ext_resource type="Texture2D" uid="uid://cnha33tkumu2j" path="res://assets/art/detection_circle.png" id="9_c3seu"]
 [ext_resource type="AudioStream" uid="uid://ohui27mpgdyb" path="res://assets/sounds/rebel_detected.ogg" id="10_w1aab"]
+[ext_resource type="AudioStream" uid="uid://bdf7sk1bbxmjf" path="res://assets/music/level_music_loop.ogg" id="11_rv5mw"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_at1r8")
@@ -82,3 +83,9 @@ volume_db = -0.85
 
 [node name="PoliceDetectorAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_w1aab")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_rv5mw")
+volume_db = -1.425
+autoplay = true
+parameters/looping = true
