@@ -235,9 +235,18 @@ func _choose_next_objectives():
 	const OBJECTIVES_AT_A_TIME = 2
 	objective_owners.resize(OBJECTIVES_AT_A_TIME)
 	var objective_icons = Array()
+	var previous_objectives = current_objective_positions.duplicate()
 	current_objective_positions.clear()
 	for i in range(OBJECTIVES_AT_A_TIME):
-		var next_objective_idx = randi() % $Map/SpawnPositions.get_child_count()
-		current_objective_positions.append($Map/SpawnPositions.get_child(next_objective_idx).global_position)
-		objective_icons.append(emojis[next_objective_idx])
+		for j in range(0, 1000):
+			var next_objective_idx = randi() % $Map/SpawnPositions.get_child_count()
+			var pos = $Map/SpawnPositions.get_child(next_objective_idx).global_position
+			# floats but should be fine since we don't do any math with them
+			if previous_objectives.has(pos):
+				continue
+			if current_objective_positions.has(pos):
+				continue
+			current_objective_positions.append(pos)
+			objective_icons.append(emojis[next_objective_idx])
+			break
 	Lobby.server_on_stage_changed(stage, objective_icons, objective_owners)
