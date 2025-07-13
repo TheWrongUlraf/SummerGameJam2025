@@ -20,6 +20,7 @@ func _ready() -> void:
 	nitro_texture = load("res://assets/art/Nitro.png")
 	nitro_disabled_texture = load("res://assets/art/Nitro_gray.png")
 	nitro_active_texture = load("res://assets/art/Nitro_active.png")
+	Lobby.client_on_disconnected.connect(_on_disconnected)
 
 
 func _process(_delta: float) -> void:
@@ -30,3 +31,6 @@ func _process(_delta: float) -> void:
 			nitroBoostButton.texture = nitro_disabled_texture
 		else:
 			nitroBoostButton.texture = nitro_texture
+
+func _on_disconnected():
+	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
