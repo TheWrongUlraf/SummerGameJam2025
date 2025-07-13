@@ -46,11 +46,11 @@ func _ready() -> void:
 			player_info.Role = Lobby.ROLE_REBEL
 
 		var starting_pos = spawn_points[i]
-		Lobby._start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name, starting_pos)
+		Lobby.start_game.rpc_id(player_info.Id, player_info.Role, player_info.Name, player_info.Icon, starting_pos)
 
 		var playerSprite = player_icon_scene.instantiate()
 		playerSprite.global_position = starting_pos
-		var game_player_info := PlayerInfo.new(player_info.Id, playerSprite, player_info.Role, player_info.Name)
+		var game_player_info := PlayerInfo.new(player_info.Id, playerSprite, player_info.Role, player_info.Name, player_info.Icon)
 		playerSprite.setup_icon(game_player_info)
 		players.set(player_info.Id, game_player_info)
 		add_child(playerSprite)

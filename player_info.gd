@@ -8,14 +8,16 @@ var caught: bool = false
 var reveal_cooldown: float = 0
 var name:= "N/A"
 var last_placed_emoji_time: float = 0.0
+var icon_id = 0
 
-func _init(_player_id: int, _player_node: Node2D, _role: int, _name: String):
+func _init(_player_id: int, _player_node: Node2D, _role: int, _name: String, _icon: int):
 	player_id = _player_id
 	player_node = _player_node
 	role = _role
 	name = _name
+	icon_id = _icon
 
-	
+
 func _process(delta: float):
 	if reveal_cooldown > 0:
 		reveal_cooldown -= delta

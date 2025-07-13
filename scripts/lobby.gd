@@ -19,6 +19,7 @@ var _stage_icon = 0
 var game_scene = null
 var _client_role = ROLE_RANDOM
 var _client_name = ""
+var _client_icon = 0
 
 var _party_leader = 0
 
@@ -56,10 +57,17 @@ var EMOJI_TEXTURES := [
 	preload("res://assets/art/graffiti/CatPunk.png")
 ]
 
+const CHARACTER_TEXTURES = [
+	preload("res://assets/art/characters/CatPunk.png"),
+	preload("res://assets/art/characters/Deer_Punk.png"),
+	preload("res://assets/art/characters/DogPunk.png"),
+]
+
 class LobbyPlayerInfo:
 	var Id: int
 	var Name: String
 	var Role: int
+	var Icon: int
 
 class ScheduledEmoji:
 	var Pos: Vector2
@@ -141,10 +149,11 @@ func _server_on_player_ready_in_lobby(id, player_name, role):
 		player.Id = id
 		player.Name = player_name
 		player.Role = role
+		player.Icon = len(players_in_lobby) % len(CHARACTER_TEXTURES)
 		players_in_lobby.append(player)
 		server_on_player_number_updated.emit()
 		print("Client " + str(id) + " has entered the lobby")
-		
+
 		if _party_leader == 0:
 			_server_set_party_leader(id, player_name)
 
@@ -229,12 +238,12 @@ func change_to_game_scene():
 
 
 @rpc("authority", "call_remote", "reliable")
-func _start_game(role, player_name, starting_position):
+func start_game(role, player_name, icon, starting_position):
 	if is_server():
 		printerr("We never call this on the server duh!")
 	_client_role = role
 	_client_name = player_name
-	print("Client role: " + str(_client_role))
+	_client_icon = icon
 	client_on_game_started.emit(role, starting_position)
 
 
