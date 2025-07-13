@@ -20,9 +20,12 @@ var game_scene = null
 var _client_role = ROLE_RANDOM
 var _client_name = ""
 
+var _party_leader = 0
+
 var scheduled_emojis = Array()
 
 signal server_on_player_number_updated
+signal server_on_party_leader_changed
 
 signal client_on_connected
 signal client_on_connection_error
@@ -31,6 +34,7 @@ signal client_on_game_started
 signal client_on_game_reset
 signal client_on_player_put_emoji
 signal client_on_stage_changed
+signal client_on_party_leader_changed
 
 var EMOJI_TEXTURES := [
 	preload("res://assets/art/graffiti/Graf_Bomb.png"),
@@ -140,6 +144,9 @@ func _server_on_player_ready_in_lobby(id, player_name, role):
 		players_in_lobby.append(player)
 		server_on_player_number_updated.emit()
 		print("Client " + str(id) + " has entered the lobby")
+		
+		if _party_leader == 0:
+			_server_set_party_leader(id, player_name)
 
 
 func _server_only_on_client_connected(id):
@@ -154,6 +161,13 @@ func _server_only_on_client_disconnected(id):
 			players_in_lobby.remove_at(i)
 			break;
 	server_on_player_number_updated.emit()
+
+	if _party_leader == id:
+		if players_in_lobby.is_empty():
+			_server_set_party_leader(0, "")
+		else:
+			var player_info = (players_in_lobby[0] as LobbyPlayerInfo)
+			_server_set_party_leader(player_info.Id, player_info.Name)
 
 
 func _client_only_on_connected_ok():
@@ -310,6 +324,26 @@ func _place_emojis(positions, emojis, reveal_times):
 			scheduled_emojis.append(emoji)
 
 
+func _server_set_party_leader(id, player_name):
+	_party_leader = id
+	_client_new_party_leader.rpc(id)
+	server_on_party_leader_changed.emit(player_name)
+
+
+@rpc("authority", "call_remote", "reliable")
+func _client_new_party_leader(id):
+	client_on_party_leader_changed.emit(id)
+
+
+func client_request_start_game():
+	_server_request_start_game.rpc_id(1)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _server_request_start_game():
+	if len(players_in_lobby) >= 2:
+		Lobby.change_to_game_scene()
+
+
 func get_player_info(id):
 	for player in players_in_lobby:
 		var player_info = (player as LobbyPlayerInfo)
@@ -347,6 +381,7 @@ func _client_on_stage_changed(stage, objective_icon):
 	_stage = stage
 	_stage_icon = objective_icon
 	client_on_stage_changed.emit(stage, objective_icon)
+
 
 func client_get_stage():
 	return _stage

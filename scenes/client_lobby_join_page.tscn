@@ -63,5 +63,11 @@ layout_mode = 2
 theme = ExtResource("1_mfcuc")
 text = "Disconnect"
 
+[node name="StartGameButton" type="Button" parent="Connected"]
+layout_mode = 2
+theme = ExtResource("1_mfcuc")
+text = "Start Game!"
+
 [connection signal="pressed" from="NotConnected/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="Connected/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="pressed" from="Connected/StartGameButton" to="." method="_on_start_game_button_pressed"]

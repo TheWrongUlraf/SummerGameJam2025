@@ -10,6 +10,7 @@ func _ready():
 		ips_text += ip
 	$IPToConnectTo.text = "The IP to connect is: " + ips_text
 	Lobby.server_on_player_number_updated.connect(_on_number_updated)
+	Lobby.server_on_party_leader_changed.connect(_server_on_party_leader_changed)
 	_on_number_updated()
 
 
@@ -21,6 +22,8 @@ func _on_number_updated():
 	$PlayersInTheLobby.text = text
 
 
-func _on_start_game_debug_button_pressed() -> void:
-	if len(Lobby.players_in_lobby) > 0:
-		Lobby.change_to_game_scene()
+func _server_on_party_leader_changed(player_name):
+	if player_name.is_empty():
+		$PartyLeaderText.text = ""
+	else:
+		$PartyLeaderText.text = "Party leader is " + player_name
