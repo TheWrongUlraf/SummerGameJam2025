@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://do2818u4a86j5"]
+[gd_scene load_steps=16 format=3 uid="uid://do2818u4a86j5"]
 
 [ext_resource type="Script" uid="uid://cosml2rjkukcw" path="res://scripts/map.gd" id="1_q2ejr"]
 [ext_resource type="Texture2D" uid="uid://c8yiblhj5io1v" path="res://assets/art/buildings/Cityhall.png" id="2_73f5v"]
@@ -6,13 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://c36p2g7spcn36" path="res://assets/art/Grass.png" id="2_bp71e"]
 [ext_resource type="Texture2D" uid="uid://cx4xhll6f8ri6" path="res://assets/art/buildings/House_01.png" id="3_q2ejr"]
 [ext_resource type="Texture2D" uid="uid://chvcpfr40ss5q" path="res://assets/art/buildings/House_02.png" id="4_bp71e"]
+[ext_resource type="Texture2D" uid="uid://lhs07r8hui4p" path="res://assets/art/buildings/Map-big_tree.png" id="7_p5s26"]
+[ext_resource type="Texture2D" uid="uid://bl34g66huid2a" path="res://assets/art/buildings/Map-_fountain.png" id="8_sbksc"]
+[ext_resource type="Texture2D" uid="uid://b6utmu84yaea6" path="res://assets/art/buildings/Map_-_miniapartment.png" id="9_770vx"]
+[ext_resource type="Texture2D" uid="uid://dur1cb4vav0pc" path="res://assets/art/buildings/Map_-_tree_-_small.png" id="10_x4al8"]
+[ext_resource type="Texture2D" uid="uid://uh32patl4u5f" path="res://assets/art/buildings/Map_-_tree_-_big.png" id="11_sq7qi"]
+[ext_resource type="Texture2D" uid="uid://df45vlh4mg0dc" path="res://assets/art/buildings/Map_school.png" id="12_xhwm5"]
+[ext_resource type="Texture2D" uid="uid://b1dhi0hvh1h5f" path="res://assets/art/buildings/Map_traffic_light.png" id="13_ckooa"]
+[ext_resource type="Texture2D" uid="uid://b68k0eefot6t4" path="res://assets/art/buildings/Map__apartment.png" id="14_002dp"]
+[ext_resource type="Texture2D" uid="uid://dujumntri1udt" path="res://assets/art/buildings/Tree-_1.png" id="15_36vwh"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_q2ejr")
 
 [node name="Grass" type="Sprite2D" parent="."]
-position = Vector2(-9.15527e-05, 500)
-scale = Vector2(4.39239, 3.90625)
+modulate = Color(0.6, 0.6, 0.6, 1)
+position = Vector2(193, 336)
+scale = Vector2(18.4231, 16.3841)
 texture = ExtResource("2_bp71e")
 
 [node name="SpawnPositions" type="Node2D" parent="."]
@@ -407,15 +417,259 @@ position = Vector2(2500, -500)
 texture = ExtResource("3_q2ejr")
 
 [node name="Cityhall" type="Sprite2D" parent="buildings"]
-position = Vector2(-2500, 1500)
+position = Vector2(-2351, 1136)
 texture = ExtResource("2_73f5v")
 
 [node name="Cityhall2" type="Sprite2D" parent="buildings"]
-position = Vector2(2500, 1500)
+position = Vector2(2333, 1584)
 texture = ExtResource("2_73f5v")
 
 [node name="Cityhall3" type="Sprite2D" parent="buildings"]
-position = Vector2(-4000, -1500)
+position = Vector2(35, -1715)
 texture = ExtResource("2_73f5v")
 
+[node name="Map-bigTree2" type="Sprite2D" parent="buildings"]
+position = Vector2(1517, -976)
+texture = ExtResource("7_p5s26")
+
+[node name="Map-bigTree" type="Sprite2D" parent="buildings"]
+position = Vector2(108, 1040)
+texture = ExtResource("7_p5s26")
+
+[node name="Map-Fountain" type="Sprite2D" parent="buildings"]
+position = Vector2(2006, 503)
+texture = ExtResource("8_sbksc")
+
+[node name="Map-Miniapartment" type="Sprite2D" parent="buildings"]
+position = Vector2(986, 444)
+texture = ExtResource("9_770vx")
+
+[node name="Map-Miniapartment2" type="Sprite2D" parent="buildings"]
+position = Vector2(-3504, -1318)
+texture = ExtResource("9_770vx")
+
+[node name="Map-Tree-Small" type="Sprite2D" parent="buildings"]
+position = Vector2(-889, -637)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Big3" type="Sprite2D" parent="buildings"]
+position = Vector2(-1110, -607)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-Tree-Big" type="Sprite2D" parent="buildings"]
+position = Vector2(-877, -476)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-Tree-Big2" type="Sprite2D" parent="buildings"]
+position = Vector2(-1026, -434)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-Tree-Small2" type="Sprite2D" parent="buildings"]
+position = Vector2(-1826, -422)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Small3" type="Sprite2D" parent="buildings"]
+position = Vector2(1803, 163)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Small4" type="Sprite2D" parent="buildings"]
+position = Vector2(2663, -1186)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Small5" type="Sprite2D" parent="buildings"]
+position = Vector2(2460, -1264)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Small6" type="Sprite2D" parent="buildings"]
+position = Vector2(2299, -1031)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Big4" type="Sprite2D" parent="buildings"]
+position = Vector2(2502, -1043)
+texture = ExtResource("11_sq7qi")
+
+[node name="MapSchool" type="Sprite2D" parent="buildings"]
+position = Vector2(460, 1864)
+texture = ExtResource("12_xhwm5")
+
+[node name="Map-bigTree3" type="Sprite2D" parent="buildings"]
+position = Vector2(17, -488)
+texture = ExtResource("7_p5s26")
+
+[node name="MapTrafficLight" type="Sprite2D" parent="buildings"]
+position = Vector2(-250, 1040)
+texture = ExtResource("13_ckooa")
+
+[node name="MapApartment" type="Sprite2D" parent="buildings"]
+position = Vector2(-996, 1996)
+texture = ExtResource("14_002dp")
+
+[node name="MapApartment2" type="Sprite2D" parent="buildings"]
+position = Vector2(-3486, -828)
+texture = ExtResource("14_002dp")
+
+[node name="MapApartment3" type="Sprite2D" parent="buildings"]
+position = Vector2(-3486, -333)
+texture = ExtResource("14_002dp")
+
+[node name="MapApartment4" type="Sprite2D" parent="buildings"]
+position = Vector2(-3504, 133)
+texture = ExtResource("14_002dp")
+
+[node name="Tree-1" type="Sprite2D" parent="buildings"]
+position = Vector2(-208, 1954)
+texture = ExtResource("15_36vwh")
+
+[node name="Tree-2" type="Sprite2D" parent="buildings"]
+position = Vector2(1105, 1948)
+texture = ExtResource("15_36vwh")
+
+[node name="Tree-3" type="Sprite2D" parent="buildings"]
+position = Vector2(1326, -1097)
+texture = ExtResource("15_36vwh")
+
+[node name="Tree-4" type="Sprite2D" parent="buildings"]
+position = Vector2(-2190, -1139)
+texture = ExtResource("15_36vwh")
+
+[node name="House06" type="Sprite2D" parent="buildings"]
+position = Vector2(-2071, -667)
+texture = ExtResource("3_q2ejr")
+
+[node name="House07" type="Sprite2D" parent="buildings"]
+position = Vector2(-1593, -1956)
+texture = ExtResource("4_bp71e")
+
+[node name="House08" type="Sprite2D" parent="buildings"]
+position = Vector2(-2214, -1909)
+texture = ExtResource("4_bp71e")
+
+[node name="House09" type="Sprite2D" parent="buildings"]
+position = Vector2(-2883, -1980)
+texture = ExtResource("4_bp71e")
+
+[node name="Map-Fountain2" type="Sprite2D" parent="buildings"]
+position = Vector2(-2345, 1858)
+texture = ExtResource("8_sbksc")
+
+[node name="Map-Tree-Big5" type="Sprite2D" parent="buildings"]
+position = Vector2(-1743, 1876)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-Tree-Small7" type="Sprite2D" parent="buildings"]
+position = Vector2(-3265, 819)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Big6" type="Sprite2D" parent="buildings"]
+position = Vector2(-3139, 1124)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-Tree-Big7" type="Sprite2D" parent="buildings"]
+position = Vector2(-3557, 963)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-Tree-Small8" type="Sprite2D" parent="buildings"]
+position = Vector2(-2805, 1685)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Small9" type="Sprite2D" parent="buildings"]
+position = Vector2(-3205, 1500)
+texture = ExtResource("10_x4al8")
+
+[node name="MapSchool2" type="Sprite2D" parent="buildings"]
+position = Vector2(3725, -1240)
+texture = ExtResource("12_xhwm5")
+
+[node name="MapTrafficLight2" type="Sprite2D" parent="buildings"]
+position = Vector2(2197, -386)
+texture = ExtResource("13_ckooa")
+
+[node name="MapTrafficLight3" type="Sprite2D" parent="buildings"]
+position = Vector2(-2292, -446)
+texture = ExtResource("13_ckooa")
+
+[node name="MapApartment5" type="Sprite2D" parent="buildings"]
+position = Vector2(3505, -446)
+texture = ExtResource("14_002dp")
+
+[node name="MapApartment6" type="Sprite2D" parent="buildings"]
+position = Vector2(3033, 587)
+texture = ExtResource("14_002dp")
+
+[node name="House10" type="Sprite2D" parent="buildings"]
+position = Vector2(1290, -1950)
+texture = ExtResource("4_bp71e")
+
+[node name="House11" type="Sprite2D" parent="buildings"]
+position = Vector2(1833, -1950)
+texture = ExtResource("3_q2ejr")
+
+[node name="House12" type="Sprite2D" parent="buildings"]
+position = Vector2(2394, -1968)
+texture = ExtResource("3_q2ejr")
+
+[node name="House13" type="Sprite2D" parent="buildings"]
+position = Vector2(2943, -1939)
+texture = ExtResource("3_q2ejr")
+
+[node name="Map-bigTree4" type="Sprite2D" parent="buildings"]
+position = Vector2(3445, -1849)
+texture = ExtResource("7_p5s26")
+
+[node name="Map-bigTree5" type="Sprite2D" parent="buildings"]
+position = Vector2(812, -1974)
+texture = ExtResource("7_p5s26")
+
+[node name="Map-Tree-Big8" type="Sprite2D" parent="buildings"]
+position = Vector2(-698, -1950)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-Tree-Small10" type="Sprite2D" parent="buildings"]
+position = Vector2(-1164, -1980)
+texture = ExtResource("10_x4al8")
+
+[node name="Tree-5" type="Sprite2D" parent="buildings"]
+position = Vector2(-3330, -1956)
+texture = ExtResource("15_36vwh")
+
+[node name="Tree-6" type="Sprite2D" parent="buildings"]
+position = Vector2(3015, 1237)
+texture = ExtResource("15_36vwh")
+
+[node name="Tree-7" type="Sprite2D" parent="buildings"]
+position = Vector2(1935, 2294)
+texture = ExtResource("15_36vwh")
+
+[node name="Map-Tree-Small11" type="Sprite2D" parent="buildings"]
+position = Vector2(1296, 2646)
+texture = ExtResource("10_x4al8")
+
+[node name="Map-Tree-Big9" type="Sprite2D" parent="buildings"]
+position = Vector2(1033, 2718)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-bigTree6" type="Sprite2D" parent="buildings"]
+position = Vector2(490, 2724)
+texture = ExtResource("7_p5s26")
+
+[node name="Map-Tree-Small12" type="Sprite2D" parent="buildings"]
+position = Vector2(-662, 2730)
+texture = ExtResource("10_x4al8")
+
+[node name="House14" type="Sprite2D" parent="buildings"]
+position = Vector2(60, 2771)
+texture = ExtResource("4_bp71e")
+
 [node name="Emojis" type="Node2D" parent="."]
+
+[node name="Map-Tree-Big" type="Sprite2D" parent="."]
+position = Vector2(-429, 2760)
+texture = ExtResource("11_sq7qi")
+
+[node name="Map-Tree-Small" type="Sprite2D" parent="."]
+position = Vector2(-823, 2425)
+texture = ExtResource("10_x4al8")
+
+[node name="Tree-1" type="Sprite2D" parent="."]
+position = Vector2(1021, -207)
+texture = ExtResource("15_36vwh")
