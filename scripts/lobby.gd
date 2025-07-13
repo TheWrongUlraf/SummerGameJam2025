@@ -398,5 +398,9 @@ func client_get_stage():
 	return _stage
 
 
+func client_get_icon():
+	return _client_icon
+
+
 func client_get_stage_objective_icon():
 	return _stage_icon

@@ -4,6 +4,8 @@ extends Node2D
 @onready var policeCamera: Camera2D = get_node("PoliceCamera2D")
 @onready var player = get_node("CharacterBody2D")
 
+var police_texture = preload("res://assets/art/PoliceCar.png")
+
 var nitro_texture : Resource
 var nitro_disabled_texture : Resource
 var nitro_active_texture : Resource
@@ -17,6 +19,11 @@ func _ready() -> void:
 	nitro_disabled_texture = load("res://assets/art/Nitro_gray.png")
 	nitro_active_texture = load("res://assets/art/Nitro_active.png")
 	Lobby.client_on_disconnected.connect(_on_disconnected)
+
+	if ClientPlayer.role == Lobby.ROLE_REBEL:
+		$CharacterBody2D/Sprite2D.texture = Lobby.CHARACTER_TEXTURES[Lobby.client_get_icon()]
+	else:
+		$CharacterBody2D/Sprite2D.texture = police_texture
 
 
 func _process(_delta: float) -> void:
