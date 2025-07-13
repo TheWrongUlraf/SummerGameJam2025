@@ -9,10 +9,10 @@ V The cop catching someone, objective changes
 
 - Bug randomize who's the cop every round 
 - Don't loose points when the other scores
-- When the cop is close to a punk - the siren goes on
+-Matte- When the cop is close to a punk - the siren goes on
 - Bug don't give the same goal twice in a row
 - Bug Don't give the same goal to both players
-- Make nitro sound longer so it plays during whole nitro
+V Make nitro sound longer so it plays during whole nitro
 
 - Redo menues
 - Show the cop 25%, switch which ones every point
