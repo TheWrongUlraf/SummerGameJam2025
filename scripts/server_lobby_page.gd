@@ -11,6 +11,7 @@ func _ready():
 	$IPToConnectTo.text = "The IP to connect is: " + ips_text
 	Lobby.server_on_player_number_updated.connect(_on_number_updated)
 	Lobby.server_on_party_leader_changed.connect(_server_on_party_leader_changed)
+	_server_on_party_leader_changed(Lobby.server_get_party_leader_name())
 	_on_number_updated()
 
 

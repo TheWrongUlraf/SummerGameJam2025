@@ -22,7 +22,7 @@ var _client_name = ""
 var _client_icon = 0
 
 var _party_leader = 0
-var _client_is_party_leader = 0
+var _client_is_party_leader = false
 
 var scheduled_emojis = Array()
 
@@ -195,6 +195,13 @@ func _client_only_on_server_disconnected():
 	client_on_disconnected.emit()
 
 
+func server_get_party_leader_name():
+	for player in players_in_lobby:
+		if _party_leader == player.Id:
+			return player.Name
+	return ""
+
+
 func is_server():
 	if _is_server_cached == -1:
 		_is_server_cached = 1 if OS.get_cmdline_args().has("-server") else 0
@@ -354,7 +361,7 @@ func _server_set_party_leader(id, player_name):
 func _client_new_party_leader(id):
 	if id == multiplayer.get_unique_id() && (OS.get_cmdline_args().has("-debugclient") || OS.get_cmdline_args().has("-connect")):
 		client_request_start_game()
-		_client_is_party_leader = (id == multiplayer.get_unique_id())
+	_client_is_party_leader = (id == multiplayer.get_unique_id())
 	client_on_party_leader_changed.emit(id)
 
 
