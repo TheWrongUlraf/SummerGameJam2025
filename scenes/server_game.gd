@@ -166,7 +166,7 @@ func _check_win_conditions():
 				rebels += 1
 				if player.is_revealed():
 					var distance = objective.distance_to(player.player_node.global_position)
-					if distance < 100:
+					if distance < 150:
 						revealed_rebels_closeby += 1
 
 		if revealed_rebels_closeby >= rebels:
