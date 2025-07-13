@@ -111,7 +111,7 @@ func _check_win_conditions():
 	for player_id in players:
 		var player : PlayerInfo = players[player_id]
 		if cop_player.player_id != player.player_id:
-			if player.player_node.global_position.distance_to(cop_player.player_node.global_position) <= 250:
+			if player.player_node.global_position.distance_to(cop_player.player_node.global_position) <= 160:
 				if !player.caught:
 					audio.stream = load("res://assets/sounds/siren.ogg")
 					audio.play()

@@ -52,10 +52,7 @@ var EMOJI_TEXTURES := [
 	preload("res://assets/art/graffiti/Graf_PinkHeart.png"),
 	preload("res://assets/art/graffiti/Graf_Skull.png"),
 	preload("res://assets/art/graffiti/Graf_YelChili.png"),
-	preload("res://assets/art/graffiti/icon2025.png"),
-	preload("res://assets/art/graffiti/Nitro_active.png"),
-	preload("res://assets/art/graffiti/Nitro_gray.png"),
-	preload("res://assets/art/graffiti/CatPunk.png")
+	preload("res://assets/art/graffiti/icon2025.png")
 ]
 
 const CHARACTER_TEXTURES = [
