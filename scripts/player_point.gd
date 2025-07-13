@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var PLAYER_SPEED = 20.0
 var PLAYER_MIN_SPEED = PLAYER_SPEED / 5.0
-var PLAYER_MAX_SPEED = PLAYER_SPEED * 40.0
+var PLAYER_MAX_SPEED = PLAYER_SPEED * 20.0
 var PLAYER_SLOWDOWN_SPEED = PLAYER_SPEED * 0.5
 
 var dragged := false
@@ -32,10 +32,10 @@ func _physics_process(_delta: float) -> void:
 	var playerMaxSpeed = PLAYER_MAX_SPEED
 	var playerSlowDown = PLAYER_SLOWDOWN_SPEED
 		
-	if ClientPlayer.role == Lobby.ROLE_POLICE:
-		playerSpeed *= 1.5
-		playerMaxSpeed *= 1.5
-		playerSlowDown *= 0.5
+	#if ClientPlayer.role == Lobby.ROLE_POLICE:
+		#playerSpeed *= 1.5
+		#playerMaxSpeed *= 1.5
+		#playerSlowDown *= 0.5
 	if nitro_boost_active > 0:
 		playerSpeed *= 2.0
 		playerMaxSpeed *= 2.0
