@@ -1,7 +1,5 @@
 extends Node2D
 
-@onready var revealButton: Sprite2D = get_node("Camera2D/RevealButton")
-@onready var nitroBoostButton: Sprite2D = get_node("PoliceCamera2D/NitroBoost")
 @onready var rebelCamera: Camera2D = get_node("Camera2D")
 @onready var policeCamera: Camera2D = get_node("PoliceCamera2D")
 @onready var player = get_node("CharacterBody2D")
@@ -12,11 +10,9 @@ var nitro_active_texture : Resource
 
 func _ready() -> void:
 	if ClientPlayer.role != Lobby.ROLE_REBEL:
-		revealButton.get_parent().remove_child(revealButton)
 		rebelCamera.enabled = false
 		policeCamera.enabled = true
-	if ClientPlayer.role != Lobby.ROLE_POLICE:
-		nitroBoostButton.get_parent().remove_child(nitroBoostButton)
+	$CanvasLayer/Control/InGameHud.on_nitro_pressed.connect(_on_nitro_clicked)
 	nitro_texture = load("res://assets/art/Nitro.png")
 	nitro_disabled_texture = load("res://assets/art/Nitro_gray.png")
 	nitro_active_texture = load("res://assets/art/Nitro_active.png")
@@ -26,11 +22,19 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if ClientPlayer.role == Lobby.ROLE_POLICE:
 		if player.nitro_boost_active > 0:
-			nitroBoostButton.texture = nitro_active_texture
+			$CanvasLayer/Control/InGameHud.update_nitro_texture(nitro_active_texture)
 		elif player.nitro_boost_cooldown > 0:
-			nitroBoostButton.texture = nitro_disabled_texture
+			$CanvasLayer/Control/InGameHud.update_nitro_texture(nitro_disabled_texture)
 		else:
-			nitroBoostButton.texture = nitro_texture
+			$CanvasLayer/Control/InGameHud.update_nitro_texture(nitro_texture)
+
 
 func _on_disconnected():
 	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
+
+
+func _on_nitro_clicked():
+	if player.nitro_boost_cooldown <= 0:
+		player.nitro_boost_active = 5
+		player.nitro_boost_cooldown = 30
+		Lobby.nitro_boost_activated.rpc_id(1)

@@ -16,8 +16,4 @@ func _on_reveal_clicked() -> void:
 
 
 func _on_nitro_clicked() -> void:
-	if playerPoint.nitro_boost_cooldown <= 0:
-		playerPoint.nitro_boost_active = 5
-		playerPoint.nitro_boost_cooldown = 30
-		Lobby.nitro_boost_activated.rpc_id(1)
-	
+	pass
