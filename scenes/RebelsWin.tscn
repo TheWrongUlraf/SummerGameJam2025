@@ -1,9 +1,17 @@
-[gd_scene format=3 uid="uid://ctjns5fpwjoif"]
+[gd_scene load_steps=2 format=3 uid="uid://ctjns5fpwjoif"]
+
+[ext_resource type="Texture2D" uid="uid://cev51g88iua7q" path="res://assets/art/Rebels_Win.png" id="1_sd0j0"]
 
 [node name="RebelsWin" type="Node2D"]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_right = 333.0
-offset_bottom = 220.0
-theme_override_font_sizes/normal_font_size = 50
-text = "Rebels win!"
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_sd0j0")
+expand_mode = 4
+stretch_mode = 5
