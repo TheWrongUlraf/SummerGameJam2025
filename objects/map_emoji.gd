@@ -12,3 +12,5 @@ func _ready():
 func set_stage(stage):
 	if stage >= reveal_time:
 		show()
+	else:
+		hide()

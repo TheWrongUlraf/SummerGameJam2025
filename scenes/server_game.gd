@@ -141,8 +141,10 @@ func _check_win_conditions():
 					
 					player.player_node.global_position = teleport_target
 					Lobby.teleport.rpc_id(player_id, player_id, teleport_target)
-					
-					# TODO trigger new objectives (send out arrest notification)
+
+					stage -= 1
+					_choose_next_objectives()
+					progressBar.value = stage
 					police_catches += 1
 					progressBarPolice.value = police_catches
 					if police_catches >= police_catches_to_win:
@@ -169,6 +171,8 @@ func _check_win_conditions():
 		if revealed_rebels_closeby >= rebels:
 			stage += 1
 			progressBar.value = stage
+			police_catches +- 1
+			progressBarPolice.value = police_catches
 			rebelProgressAudio.play()
 			if stage >= max_stages:
 				Lobby.team_wins(Lobby.ROLE_REBEL)
