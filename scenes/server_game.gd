@@ -11,6 +11,8 @@ var max_stages = 5
 var current_objective_pos = Vector2(0.0, 0.0)
 var emojis = Array()
 
+const REVEAL_TIME_SEC = 3.0
+
 func _ready() -> void:
 	if !Lobby.is_server():
 		printerr("Don't call it from client!")
@@ -65,7 +67,7 @@ func update_player_position(player_id: int, pos: Vector2):
 func reveal(player_id: int):
 	if players.has(player_id):
 		var player : PlayerInfo = players.get(player_id)
-		player.reveal_cooldown = 10 # Reveal time
+		player.reveal_cooldown = REVEAL_TIME_SEC
 
 func get_player_position(player_id):
 	if players.has(player_id):
