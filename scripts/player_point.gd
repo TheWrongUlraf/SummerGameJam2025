@@ -19,6 +19,7 @@ var nitro_boost_cooldown: float = 0
 func _ready():
 	global_position = ClientPlayer.player_pos
 	target_position = global_position
+	Lobby.client_player_point = self
 
 
 func _physics_process(_delta: float) -> void:
@@ -87,6 +88,10 @@ func _physics_process(_delta: float) -> void:
 	camera.global_position = target_camera_pos
 	
 	Lobby.update_position.rpc_id(1, global_position)
+	
+func teleport(new_position: Vector2):
+	target_position = new_position
+	global_position = new_position
 
 func _input(event):
 	if event is InputEventMouseButton:

@@ -2,7 +2,10 @@ extends Node2D
 
 @onready var audio: AudioStreamPlayer2D = get_node("Audio")
 @onready var rebelProgressAudio: AudioStreamPlayer = get_node("RebelProgressAudio")
-@onready var progressBar: TextureProgressBar = get_node("CanvasLayer/MarginContainer/ProgressBar")
+@onready var progressBar: TextureProgressBar = get_node("CanvasLayer/MarginContainer/VBoxContainer/ProgressBar")
+@onready var progressBarPolice: TextureProgressBar = get_node("CanvasLayer/MarginContainer/VBoxContainer/ProgressBarPolice")
+@onready var arrestedOverlay: TextureRect = get_node("CanvasLayer/ArrestedOverlay")
+@onready var arrestedOverlayText: RichTextLabel = get_node("CanvasLayer/ArrestedOverlay/ArrestedText")
 
 var players := {}
 
@@ -12,6 +15,11 @@ var stage = 0
 var max_stages = 5
 var current_objective_pos = Vector2(0.0, 0.0)
 var emojis = Array()
+
+var police_catches = 0
+var police_catches_to_win = 5
+
+var arrested_overlay_show_cooldown = 0
 
 const REVEAL_TIME_SEC = 3.0
 
@@ -63,6 +71,7 @@ func _ready() -> void:
 	_choose_next_objective()
 	
 	progressBar.max_value = max_stages
+	progressBarPolice.max_value = police_catches_to_win
 
 func update_player_position(player_id: int, pos: Vector2):
 	if players.has(player_id):
@@ -95,6 +104,10 @@ func _process(delta: float) -> void:
 	for player in players.values():
 		player._process(delta)
 	_check_win_conditions()
+	if arrested_overlay_show_cooldown > 0:
+		arrested_overlay_show_cooldown -= delta
+		if arrested_overlay_show_cooldown <= 0:
+			arrestedOverlay.visible = false
 	update_visuals()
 
 func update_visuals():
@@ -112,11 +125,33 @@ func _check_win_conditions():
 		var player : PlayerInfo = players[player_id]
 		if cop_player.player_id != player.player_id:
 			if player.player_node.global_position.distance_to(cop_player.player_node.global_position) <= 160:
-				if !player.caught:
+				if !player.caught and player.caught_cooldown <= 0:
 					audio.stream = load("res://assets/sounds/siren.ogg")
 					audio.play()
-					player.caught = true
-					Lobby.team_wins(Lobby.ROLE_POLICE)
+					var spawnPoints := _get_randomized_spawn_points(len($Map/SpawnPositions.get_children()))
+					spawnPoints = sort_by_closest(player.player_node.global_position, spawnPoints)
+					for i in range(8): # Remove 8 closest spawn points
+						spawnPoints.remove_at(0)
+						
+					spawnPoints.shuffle()
+					
+					var teleport_target : Vector2 = spawnPoints[0]
+					player.reveal_cooldown = 0 # Make sure no longer revealed
+					player.caught_cooldown = 5 # Player can not be caught the next 5 seconds
+					
+					player.player_node.global_position = teleport_target
+					Lobby.teleport.rpc_id(player_id, player_id, teleport_target)
+					
+					# TODO trigger new objectives (send out arrest notification)
+					police_catches += 1
+					progressBarPolice.value = police_catches
+					if police_catches >= police_catches_to_win:
+						player.caught = true
+						Lobby.team_wins(Lobby.ROLE_POLICE)
+					else:
+						arrested_overlay_show_cooldown = 3
+						arrestedOverlay.visible = true
+						arrestedOverlayText.text = player.name+"\nwas arrested!"
 					return
 
 	var rebels := 0
@@ -141,7 +176,7 @@ func _check_win_conditions():
 			_choose_next_objective()
 
 
-func _get_randomized_spawn_points(number):
+func _get_randomized_spawn_points(number) -> Array:
 	var spawn_points = $Map/SpawnPositions.get_children()
 	var positions = Array()
 	if number > len(spawn_points):
@@ -151,6 +186,25 @@ func _get_randomized_spawn_points(number):
 	for i in range(0, number):
 		positions.append(spawn_points[i].global_position)
 	return positions
+	
+
+func sort_by_second(a, b):
+	if a[1] < b[1]:
+		return true
+	return false
+
+	
+func sort_by_closest(global_pos: Vector2, spawnPoints: Array) -> Array:
+	var spawnPointsWithDistance = Array()
+	for i in range(len(spawnPoints)):
+		spawnPointsWithDistance.push_back([spawnPoints[i], spawnPoints[i].distance_to(global_pos)])
+	
+	spawnPointsWithDistance.sort_custom(sort_by_second)
+	
+	var result = Array()
+	for pair in spawnPointsWithDistance:
+		result.push_back(pair[0])
+	return result
 
 
 func _generate_random_emojis():

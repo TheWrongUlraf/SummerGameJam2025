@@ -21,6 +21,8 @@ var _client_role = ROLE_RANDOM
 var _client_name = ""
 var _client_icon = 0
 
+var client_player_point = null
+
 var _party_leader = 0
 var _client_is_party_leader = false
 
@@ -262,6 +264,16 @@ func _team_wins(role: int):
 		get_tree().change_scene_to_file("res://scenes/RebelsWin.tscn")
 	# todo change scene
 
+@rpc("authority", "call_remote", "reliable")
+func teleport(teleported_player_id: int, new_position: Vector2):
+	if is_server():
+		printerr("We never call this on the server duh!")
+	if teleported_player_id == multiplayer.get_unique_id():
+		if client_player_point == null:
+			printerr("Client not ready!")
+		else:
+			client_player_point.teleport(new_position)
+	
 
 @rpc("any_peer", "call_remote", "unreliable_ordered")
 func update_position(pos: Vector2):
