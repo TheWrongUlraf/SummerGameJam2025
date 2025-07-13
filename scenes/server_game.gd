@@ -172,7 +172,7 @@ func _check_win_conditions():
 		if revealed_rebels_closeby >= rebels:
 			stage += 1
 			progressBar.value = stage
-			if police_catches >= 0:
+			if police_catches > 0:
 				police_catches -= 1
 				progressBarPolice.value = police_catches
 			rebelProgressAudio.play()
