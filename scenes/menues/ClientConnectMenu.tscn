@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cei4euf0ujv82"]
+[gd_scene load_steps=9 format=3 uid="uid://cei4euf0ujv82"]
 
 [ext_resource type="Texture2D" uid="uid://y1e2lue8lhcv" path="res://assets/art/menues/client_title.png" id="1_kw5ia"]
 [ext_resource type="Script" uid="uid://ck06jr47bkk7x" path="res://scripts/client_connect_menu.gd" id="1_q8ros"]
 [ext_resource type="Theme" uid="uid://bnivdma6helc8" path="res://themes/UI_theme.tres" id="2_b7kwu"]
 [ext_resource type="FontFile" uid="uid://2a2g1uljrr17" path="res://assets/Rock3D-Regular.ttf" id="3_b7kwu"]
-[ext_resource type="PackedScene" uid="uid://dwgn6s513rplp" path="res://objects/character_select.tscn" id="4_4t3kg"]
+[ext_resource type="Texture2D" uid="uid://dcq72mrf7n7mf" path="res://assets/art/characters/Pick3.png" id="5_0hh7n"]
+[ext_resource type="Texture2D" uid="uid://b6pbwuwirbve4" path="res://assets/art/characters/Pick-4.png" id="6_xuhbx"]
+[ext_resource type="Texture2D" uid="uid://b7ays1fry77pu" path="res://assets/art/characters/Pick2.png" id="7_0hh7n"]
+[ext_resource type="Texture2D" uid="uid://chkxkfwndvnhc" path="res://assets/art/characters/Pick_1.png" id="8_0hh7n"]
 
 [node name="ClientConnectMenu" type="CanvasLayer"]
 script = ExtResource("1_q8ros")
@@ -33,10 +36,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -162.0
-offset_top = -154.0
-offset_right = 450.0
-offset_bottom = 154.0
+offset_left = -179.0
+offset_top = -49.0
+offset_right = 423.0
+offset_bottom = 259.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -77,53 +80,80 @@ popup/item_2/text = "Random"
 popup/item_2/id = 2
 
 [node name="ConnectButton" type="Button" parent="NotConnected"]
-custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.932292
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.932292
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -154.0
-offset_bottom = 154.0
-grow_horizontal = 0
+offset_left = 453.0
+offset_top = -53.0
+offset_right = 715.0
+offset_bottom = 60.0
+grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_b7kwu")
 theme_override_font_sizes/font_size = 50
 text = "Connect"
-metadata/_edit_use_anchors_ = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NotConnected"]
+[node name="TextureRect2" type="TextureRect" parent="NotConnected"]
+layout_mode = 2
+offset_left = 138.0
+offset_top = -24.0
+offset_right = 633.0
+offset_bottom = 375.0
+rotation = 0.404916
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("5_0hh7n")
+
+[node name="TextureRect3" type="TextureRect" parent="NotConnected"]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.651852
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -535.0
+offset_top = 107.0
+offset_right = -98.0
+offset_bottom = 459.0
+grow_horizontal = 0
+rotation = -0.136136
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("6_xuhbx")
+
+[node name="TextureRect4" type="TextureRect" parent="NotConnected"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -271.0
+offset_right = 457.0
+offset_bottom = 99.0
+grow_vertical = 0
+rotation = -0.472984
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("7_0hh7n")
+
+[node name="TextureRect5" type="TextureRect" parent="NotConnected"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 12.0
-grow_horizontal = 2
+offset_left = -553.0
+offset_top = -218.0
+offset_right = -129.0
+offset_bottom = 124.0
+grow_horizontal = 0
 grow_vertical = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="CharacterSelect" parent="NotConnected/HBoxContainer" instance=ExtResource("4_4t3kg")]
-layout_mode = 2
+rotation = -0.541052
 size_flags_horizontal = 6
 size_flags_vertical = 4
-
-[node name="CharacterSelect2" parent="NotConnected/HBoxContainer" instance=ExtResource("4_4t3kg")]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-
-[node name="CharacterSelect3" parent="NotConnected/HBoxContainer" instance=ExtResource("4_4t3kg")]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-
-[node name="CharacterSelect4" parent="NotConnected/HBoxContainer" instance=ExtResource("4_4t3kg")]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
+texture = ExtResource("8_0hh7n")
 
 [node name="Connected" type="VBoxContainer" parent="."]
 visible = false
