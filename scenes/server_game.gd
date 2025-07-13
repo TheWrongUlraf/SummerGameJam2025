@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var audio: AudioStreamPlayer2D = get_node("Audio")
 @onready var rebelProgressAudio: AudioStreamPlayer = get_node("RebelProgressAudio")
+@onready var nitroBoostAudio: AudioStreamPlayer = get_node("NitroBoostAudio")
 @onready var progressBar: TextureProgressBar = get_node("CanvasLayer/MarginContainer/VBoxContainer/ProgressBar")
 @onready var progressBarPolice: TextureProgressBar = get_node("CanvasLayer/MarginContainer/VBoxContainer/ProgressBarPolice")
 @onready var arrestedOverlay: TextureRect = get_node("CanvasLayer/ArrestedOverlay")
@@ -97,8 +98,7 @@ func on_emoji_placed(player_id):
 		players.get(player_id).last_placed_emoji_time = Time.get_unix_time_from_system()
 
 func nitro_boost_activated(_player_id: int):
-	audio.stream = load("res://assets/sounds/nitro_boost.ogg")
-	audio.play()
+	nitroBoostAudio.play()
 
 func _process(delta: float) -> void:
 	for player in players.values():
