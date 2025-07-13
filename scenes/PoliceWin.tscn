@@ -1,9 +1,20 @@
-[gd_scene format=3 uid="uid://doc0rv6v4j8ig"]
+[gd_scene load_steps=2 format=3 uid="uid://doc0rv6v4j8ig"]
+
+[ext_resource type="Script" uid="uid://bdvxacnduy1nr" path="res://scenes/police_win.gd" id="1_a0yvw"]
 
 [node name="RebelsWin" type="Node2D"]
+script = ExtResource("1_a0yvw")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_right = 333.0
 offset_bottom = 220.0
 theme_override_font_sizes/normal_font_size = 50
 text = "Police win!"
+
+[node name="RestartButton" type="Button" parent="."]
+offset_top = 119.0
+offset_right = 557.0
+offset_bottom = 226.0
+text = "Restart game!"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

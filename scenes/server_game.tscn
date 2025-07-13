@@ -19,22 +19,6 @@ zoom = Vector2(0.2, 0.2)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RestartButton" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 1606.0
-offset_top = 926.0
-offset_right = 1889.0
-offset_bottom = 1056.0
-text = "Restart"
-
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
@@ -52,5 +36,3 @@ texture_progress = ExtResource("4_xefu1")
 
 [node name="RebelProgressAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_xefu1")
-
-[connection signal="pressed" from="CanvasLayer/Control/RestartButton" to="." method="_on_restart_button_pressed"]

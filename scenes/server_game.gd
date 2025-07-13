@@ -153,11 +153,6 @@ func _get_randomized_spawn_points(number):
 	return positions
 
 
-func _on_restart_button_pressed() -> void:
-	Lobby.client_restart_game.rpc()
-	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
-
-
 func _generate_random_emojis():
 	var positions = Array()
 	var reveal_times = Array()

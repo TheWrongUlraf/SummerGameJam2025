@@ -22,6 +22,7 @@ var _client_name = ""
 var _client_icon = 0
 
 var _party_leader = 0
+var _client_is_party_leader = 0
 
 var scheduled_emojis = Array()
 
@@ -305,8 +306,18 @@ func nitro_boost_activated():
 		game_scene.nitro_boost_activated(multiplayer.get_remote_sender_id())
 
 
+func client_request_restart():
+	_server_restart_game.rpc_id(1)
+
+
+@rpc("any_peer", "call_remote", "reliable")
+func _server_restart_game():
+	_client_restart_game.rpc()
+	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
+
+
 @rpc("authority", "call_remote", "reliable")
-func client_restart_game():
+func _client_restart_game():
 	client_on_game_reset.emit()
 	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
 
@@ -343,6 +354,7 @@ func _server_set_party_leader(id, player_name):
 func _client_new_party_leader(id):
 	if id == multiplayer.get_unique_id() && (OS.get_cmdline_args().has("-debugclient") || OS.get_cmdline_args().has("-connect")):
 		client_request_start_game()
+		_client_is_party_leader = (id == multiplayer.get_unique_id())
 	client_on_party_leader_changed.emit(id)
 
 
@@ -381,7 +393,7 @@ func team_wins(role: int):
 		var player = Lobby.players_in_lobby[i]
 		var player_info = (player as LobbyPlayerInfo)
 		Lobby._team_wins.rpc_id(player_info.Id, role)
-
+		
 
 func server_on_stage_changed(stage, objective_icon):
 	_client_on_stage_changed.rpc(stage, objective_icon)
@@ -404,3 +416,7 @@ func client_get_icon():
 
 func client_get_stage_objective_icon():
 	return _stage_icon
+
+
+func client_is_party_leader():
+	return _client_is_party_leader

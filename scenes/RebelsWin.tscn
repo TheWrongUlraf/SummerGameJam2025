@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctjns5fpwjoif"]
+[gd_scene load_steps=4 format=3 uid="uid://ctjns5fpwjoif"]
 
+[ext_resource type="Script" uid="uid://dsm0v61bwq23k" path="res://scenes/rebels_win.gd" id="1_odsx3"]
 [ext_resource type="Texture2D" uid="uid://cev51g88iua7q" path="res://assets/art/Rebels_Win.png" id="1_sd0j0"]
 
+[sub_resource type="GDScript" id="GDScript_sd0j0"]
+script/source = "extends Button
+"
+
 [node name="RebelsWin" type="Node2D"]
+script = ExtResource("1_odsx3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -15,3 +21,11 @@ grow_vertical = 2
 texture = ExtResource("1_sd0j0")
 expand_mode = 4
 stretch_mode = 5
+
+[node name="RestartButton" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Restart game"
+script = SubResource("GDScript_sd0j0")
+
+[connection signal="pressed" from="CanvasLayer/RestartButton" to="." method="_on_restart_button_pressed"]
