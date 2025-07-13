@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var audio: AudioStreamPlayer2D = get_node("Audio")
+@onready var progressBar: TextureProgressBar = get_node("CanvasLayer/MarginContainer/ProgressBar")
 
 var players := {}
 
@@ -59,6 +60,8 @@ func _ready() -> void:
 	_generate_random_emojis()
 
 	_choose_next_objective()
+	
+	progressBar.max_value = max_stages
 
 func update_player_position(player_id: int, pos: Vector2):
 	if players.has(player_id):
@@ -129,6 +132,7 @@ func _check_win_conditions():
 
 	if revealed_rebels_closeby >= rebels:
 		stage += 1
+		progressBar.value = stage
 		if stage >= max_stages:
 			Lobby.team_wins(Lobby.ROLE_REBEL)
 		else:

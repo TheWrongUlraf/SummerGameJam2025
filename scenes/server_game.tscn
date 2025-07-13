@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b637ocgpgph5g"]
+[gd_scene load_steps=5 format=3 uid="uid://b637ocgpgph5g"]
 
 [ext_resource type="Script" uid="uid://ch24x42fnv1bc" path="res://scenes/server_game.gd" id="1_at1r8"]
 [ext_resource type="PackedScene" uid="uid://do2818u4a86j5" path="res://objects/map.tscn" id="2_q75wl"]
+[ext_resource type="Texture2D" uid="uid://b0t87ilb2vxvk" path="res://assets/art/progress_bar_empty.png" id="3_at1r8"]
+[ext_resource type="Texture2D" uid="uid://dmhdj0ym5e0as" path="res://assets/art/filled_in.png" id="4_xefu1"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_at1r8")
@@ -31,5 +33,20 @@ offset_top = 926.0
 offset_right = 1889.0
 offset_bottom = 1056.0
 text = "Restart"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -875.0
+offset_right = 875.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 8
+
+[node name="ProgressBar" type="TextureProgressBar" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+texture_under = ExtResource("3_at1r8")
+texture_progress = ExtResource("4_xefu1")
 
 [connection signal="pressed" from="CanvasLayer/Control/RestartButton" to="." method="_on_restart_button_pressed"]
