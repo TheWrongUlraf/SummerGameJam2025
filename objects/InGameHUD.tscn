@@ -24,7 +24,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RebelHud"]
+[node name="Panels" type="HBoxContainer" parent="RebelHud"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,46 +33,46 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="RebelHud/HBoxContainer"]
+[node name="ObjectivePanel" type="VBoxContainer" parent="RebelHud/Panels"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="StageNumberText" type="RichTextLabel" parent="RebelHud/HBoxContainer/VBoxContainer2"]
+[node name="StageNumberText" type="RichTextLabel" parent="RebelHud/Panels/ObjectivePanel"]
 layout_mode = 2
 theme = ExtResource("2_nv1qt")
 text = "Stage 1"
 fit_content = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="RebelHud/HBoxContainer/VBoxContainer2"]
+[node name="ObjectiveRow" type="HBoxContainer" parent="RebelHud/Panels/ObjectivePanel"]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="ObjectiveText" type="RichTextLabel" parent="RebelHud/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="ObjectiveText" type="RichTextLabel" parent="RebelHud/Panels/ObjectivePanel/ObjectiveRow"]
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 theme = ExtResource("2_nv1qt")
 text = "Current objective: "
 fit_content = true
 
-[node name="ObjectiveIcon" type="TextureRect" parent="RebelHud/HBoxContainer/VBoxContainer2/HBoxContainer"]
+[node name="ObjectiveIcon" type="TextureRect" parent="RebelHud/Panels/ObjectivePanel/ObjectiveRow"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RebelHud/HBoxContainer"]
+[node name="RightControlsPanel" type="VBoxContainer" parent="RebelHud/Panels"]
 visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="HSeparator" type="HSeparator" parent="RebelHud/HBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="RebelHud/Panels/RightControlsPanel"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Emoji1Button" parent="RebelHud/HBoxContainer/VBoxContainer" instance=ExtResource("1_lwrg5")]
+[node name="Emoji1Button" parent="RebelHud/Panels/RightControlsPanel" instance=ExtResource("1_lwrg5")]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -80,14 +80,14 @@ size_flags_vertical = 4
 texture = ExtResource("2_dflql")
 expand_mode = 2
 
-[node name="Emoji2Button" parent="RebelHud/HBoxContainer/VBoxContainer" instance=ExtResource("1_lwrg5")]
+[node name="Emoji2Button" parent="RebelHud/Panels/RightControlsPanel" instance=ExtResource("1_lwrg5")]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
 expand_mode = 2
 
-[node name="Emoji3Button" parent="RebelHud/HBoxContainer/VBoxContainer" instance=ExtResource("1_lwrg5")]
+[node name="Emoji3Button" parent="RebelHud/Panels/RightControlsPanel" instance=ExtResource("1_lwrg5")]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 8
