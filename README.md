@@ -12,15 +12,13 @@ V Bug don't give the same goal twice in a row
 V Bug Don't give the same goal to both players
 V Make nitro sound longer so it plays during whole nitro
 V Bug pressing all on target and it doesn't accept it
+V When the cop is close to a punk - the siren goes on
+V gap in road
+V lower car volume
 
-- gap in road
-- lower car volume
 - reconnect after disconnect
+- Redo Client connect screen
 
--Matte- When the cop is close to a punk - the siren goes on
-- Redo menues
-
-- Show the cop 25%, switch which ones every point
+- BUG seeing only 1 graffiti after 1 success
 - Space out the map a bit
 - Adding landmarks
-- Punk only allyways
