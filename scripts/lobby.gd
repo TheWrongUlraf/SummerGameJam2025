@@ -332,6 +332,8 @@ func _server_set_party_leader(id, player_name):
 
 @rpc("authority", "call_remote", "reliable")
 func _client_new_party_leader(id):
+	if id == multiplayer.get_unique_id() && (OS.get_cmdline_args().has("-debugclient") || OS.get_cmdline_args().has("-connect")):
+		client_request_start_game()
 	client_on_party_leader_changed.emit(id)
 
 
