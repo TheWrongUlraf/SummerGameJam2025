@@ -17,9 +17,15 @@ func _ready():
 	Lobby.client_on_game_started.connect(_client_on_game_started)
 	Lobby.client_on_party_leader_changed.connect(_client_on_party_leader_changed)
 
-	$Connected/StartGameButton.hide()
+	if Lobby.client_is_party_leader():
+		$Connected/StartGameButton.show()
+	else:
+		$Connected/StartGameButton.hide()
 
-	if $NotConnected/NameEdit.text.is_empty():
+	var name = Lobby.get_client_name() 
+	if !name.is_empty():
+		$NotConnected/NameEdit.text = name
+	else:
 		$NotConnected/NameEdit.text = PredefinedAdjectives.pick_random() + " " + PredefinedNouns.pick_random()
 
 	if Lobby.is_connected_to_server():
