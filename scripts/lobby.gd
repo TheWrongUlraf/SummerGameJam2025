@@ -409,10 +409,19 @@ func team_wins(role: int):
 		var player = Lobby.players_in_lobby[i]
 		var player_info = (player as LobbyPlayerInfo)
 		Lobby._team_wins.rpc_id(player_info.Id, role)
-		
 
-func server_on_stage_changed(stage, objective_icon):
-	_client_on_stage_changed.rpc(stage, objective_icon)
+
+func server_on_stage_changed(stage, objective_icons, objective_owners):
+	if len(objective_icons) != len(objective_owners):
+		printerr("Objectives are borked")
+		return
+
+	for player in players_in_lobby:
+		var icon_idx = objective_owners.find(player.Id)
+		if icon_idx != -1:
+			_client_on_stage_changed.rpc_id(player.Id, stage, objective_icons[icon_idx])
+		else:
+			_client_on_stage_changed.rpc_id(player.Id, stage, -1)
 
 
 @rpc("authority", "call_remote", "reliable")

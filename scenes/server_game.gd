@@ -13,7 +13,7 @@ var cop_player: PlayerInfo
 
 var stage = 0
 var max_stages = 5
-var current_objective_pos = Vector2(0.0, 0.0)
+var current_objective_positions = Array()
 var emojis = Array()
 
 var police_catches = 0
@@ -68,7 +68,7 @@ func _ready() -> void:
 
 	_generate_random_emojis()
 
-	_choose_next_objective()
+	_choose_next_objectives()
 	
 	progressBar.max_value = max_stages
 	progressBarPolice.max_value = police_catches_to_win
@@ -154,26 +154,27 @@ func _check_win_conditions():
 						arrestedOverlayText.text = player.name+"\nwas arrested!"
 					return
 
-	var rebels := 0
-	var revealed_rebels_closeby := 0
+	for objective in current_objective_positions:
+		var rebels := 0
+		var revealed_rebels_closeby := 0
+		for player_id in players:
+			var player : PlayerInfo = players[player_id]
+			if player.role == Lobby.ROLE_REBEL:
+				rebels += 1
+				if player.is_revealed():
+					var distance = objective.distance_to(player.player_node.global_position)
+					if distance < 100:
+						revealed_rebels_closeby += 1
 
-	for player_id in players:
-		var player : PlayerInfo = players[player_id]
-		if player.role == Lobby.ROLE_REBEL:
-			rebels += 1
-			if player.is_revealed():
-				var distance = current_objective_pos.distance_to(player.player_node.global_position)
-				if distance < 100:
-					revealed_rebels_closeby += 1
-
-	if revealed_rebels_closeby >= rebels:
-		stage += 1
-		progressBar.value = stage
-		rebelProgressAudio.play()
-		if stage >= max_stages:
-			Lobby.team_wins(Lobby.ROLE_REBEL)
-		else:
-			_choose_next_objective()
+		if revealed_rebels_closeby >= rebels:
+			stage += 1
+			progressBar.value = stage
+			rebelProgressAudio.play()
+			if stage >= max_stages:
+				Lobby.team_wins(Lobby.ROLE_REBEL)
+			else:
+				_choose_next_objectives()
+				break
 
 
 func _get_randomized_spawn_points(number) -> Array:
@@ -219,8 +220,18 @@ func _generate_random_emojis():
 		reveal_times.append(1 + randi() % (max_stages - 1))
 	Lobby.place_emojis(positions, emojis, reveal_times)
 
-func _choose_next_objective():
-	var next_objective_idx = randi() % $Map/SpawnPositions.get_child_count()
-	current_objective_pos = $Map/SpawnPositions.get_child(next_objective_idx).global_position
-	var next_objective_emoji = emojis[next_objective_idx]
-	Lobby.server_on_stage_changed(stage, next_objective_emoji)
+func _choose_next_objectives():
+	var objective_owners = Array()
+	for player in Lobby.players_in_lobby:
+		if player.Role == Lobby.ROLE_REBEL:
+			objective_owners.append(player.Id)
+	objective_owners.shuffle()
+	const OBJECTIVES_AT_A_TIME = 2
+	objective_owners.resize(OBJECTIVES_AT_A_TIME)
+	var objective_icons = Array()
+	current_objective_positions.clear()
+	for i in range(OBJECTIVES_AT_A_TIME):
+		var next_objective_idx = randi() % $Map/SpawnPositions.get_child_count()
+		current_objective_positions.append($Map/SpawnPositions.get_child(next_objective_idx).global_position)
+		objective_icons.append(emojis[next_objective_idx])
+	Lobby.server_on_stage_changed(stage, objective_icons, objective_owners)
