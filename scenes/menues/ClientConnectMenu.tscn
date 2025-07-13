@@ -36,15 +36,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -179.0
-offset_top = -49.0
-offset_right = 423.0
-offset_bottom = 259.0
+offset_left = -206.0
+offset_top = -80.0
+offset_right = 394.0
+offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ServerIP" type="TextEdit" parent="NotConnected/VBoxContainer"]
-custom_minimum_size = Vector2(600, 100)
+custom_minimum_size = Vector2(600, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_b7kwu")
@@ -54,7 +54,7 @@ theme_override_font_sizes/font_size = 35
 text = "192.168.1.107"
 
 [node name="Name" type="TextEdit" parent="NotConnected/VBoxContainer"]
-custom_minimum_size = Vector2(600, 100)
+custom_minimum_size = Vector2(600, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_b7kwu")
@@ -64,7 +64,7 @@ theme_override_font_sizes/font_size = 35
 text = "Funky funk"
 
 [node name="RoleSelector" type="OptionButton" parent="NotConnected/VBoxContainer"]
-custom_minimum_size = Vector2(600, 100)
+custom_minimum_size = Vector2(600, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("2_b7kwu")
@@ -86,10 +86,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 453.0
-offset_top = -53.0
-offset_right = 715.0
-offset_bottom = 60.0
+offset_left = 410.0
+offset_top = -29.0
+offset_right = 643.0
+offset_bottom = 87.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_b7kwu")
