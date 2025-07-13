@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://do2818u4a86j5"]
+[gd_scene load_steps=7 format=3 uid="uid://do2818u4a86j5"]
 
 [ext_resource type="Script" uid="uid://cosml2rjkukcw" path="res://scripts/map.gd" id="1_q2ejr"]
 [ext_resource type="Texture2D" uid="uid://c8yiblhj5io1v" path="res://assets/art/buildings/Cityhall.png" id="2_73f5v"]
 [ext_resource type="PackedScene" uid="uid://d3q78tnhhf4pn" path="res://objects/roads/road.tscn" id="2_626k8"]
+[ext_resource type="Texture2D" uid="uid://c36p2g7spcn36" path="res://assets/art/Grass.png" id="2_bp71e"]
 [ext_resource type="Texture2D" uid="uid://cx4xhll6f8ri6" path="res://assets/art/buildings/House_01.png" id="3_q2ejr"]
 [ext_resource type="Texture2D" uid="uid://chvcpfr40ss5q" path="res://assets/art/buildings/House_02.png" id="4_bp71e"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_q2ejr")
+
+[node name="Grass" type="Sprite2D" parent="."]
+position = Vector2(-9.15527e-05, 500)
+scale = Vector2(4.39239, 3.90625)
+texture = ExtResource("2_bp71e")
 
 [node name="SpawnPositions" type="Node2D" parent="."]
 position = Vector2(9, -389)
