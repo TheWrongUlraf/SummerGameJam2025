@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3v0eq3alnwif"]
+
+[ext_resource type="FontFile" uid="uid://2a2g1uljrr17" path="res://assets/Rock3D-Regular.ttf" id="2_bi18w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ai0gs"]
+bg_color = Color(0.776, 0.179, 0.113, 0.695)
+
+[node name="PlayerRecord" type="Control"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 3
+anchor_right = 0.365
+anchor_bottom = 0.12
+offset_right = -0.800049
+offset_bottom = 0.399994
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ai0gs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(69, 51)
+scale = Vector2(0.356716, 0.356716)
+
+[node name="Name" type="RichTextLabel" parent="."]
+layout_mode = 1
+offset_left = 150.0
+offset_right = 750.0
+offset_bottom = 130.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_bi18w")
+theme_override_font_sizes/normal_font_size = 60
+text = "Foxy Fox"
+vertical_alignment = 1

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://6rjw8bnb5e8t" path="res://scripts/lobby_screen.gd" id="1_mx6st"]
 [ext_resource type="PackedScene" uid="uid://bae7u2awicke3" path="res://scenes/client_lobby_join_page.tscn" id="2_0mota"]
-[ext_resource type="PackedScene" uid="uid://ckhtjqve2dpvn" path="res://scenes/server_lobby_page.tscn" id="3_ov801"]
+[ext_resource type="PackedScene" uid="uid://rsklmmbuifra" path="res://scenes/menues/MainMenu.tscn" id="3_0mota"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -24,5 +24,5 @@ grow_vertical = 2
 [node name="ClientControls" parent="VerticalBox" instance=ExtResource("2_0mota")]
 layout_mode = 2
 
-[node name="ServerControls" parent="VerticalBox" instance=ExtResource("3_ov801")]
+[node name="ServerControls" parent="VerticalBox" instance=ExtResource("3_0mota")]
 layout_mode = 2

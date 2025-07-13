@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://rsklmmbuifra"]
+
+[ext_resource type="Script" uid="uid://c18iypdat3fqd" path="res://scripts/menues/main_menu.gd" id="1_1ujbe"]
+[ext_resource type="Texture2D" uid="uid://dd8jcexrqv716" path="res://assets/art/menues/title.png" id="2_16a7c"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_1ujbe")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_16a7c")
+
+[node name="PlayersList" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.636979
+anchor_top = 0.519444
+anchor_right = 0.989062
+anchor_bottom = 0.999074
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 0.174533
+metadata/_edit_use_anchors_ = true
+
+[node name="IpList" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0609375
+anchor_top = 0.616667
+anchor_right = 0.530208
+anchor_bottom = 0.914815
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 100
+text = "192.0.1.107
+192.0.1.107"
+autowrap_mode = 0
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
