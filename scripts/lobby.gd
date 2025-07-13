@@ -328,6 +328,8 @@ func client_request_restart():
 
 @rpc("any_peer", "call_remote", "reliable")
 func _server_restart_game():
+	for player in players_in_lobby:
+		player.Role = ROLE_RANDOM
 	_client_restart_game.rpc()
 	get_tree().change_scene_to_file("res://scenes/LobbyScreen.tscn")
 
