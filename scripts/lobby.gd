@@ -58,9 +58,10 @@ var EMOJI_TEXTURES := [
 ]
 
 const CHARACTER_TEXTURES = [
-	preload("res://assets/art/characters/CatPunk.png"),
-	preload("res://assets/art/characters/Deer_Punk.png"),
+	preload("res://assets/art/characters/Dog_punk_3.png"),
+	preload("res://assets/art/characters/Dog_punk_4.png"),
 	preload("res://assets/art/characters/DogPunk.png"),
+	preload("res://assets/art/characters/Dogpunk2.png"),
 ]
 
 class LobbyPlayerInfo:

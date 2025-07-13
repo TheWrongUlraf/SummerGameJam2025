@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwgn6s513rplp"]
+
+[ext_resource type="Texture2D" uid="uid://ci51x02job2q6" path="res://assets/art/characters/Dog_punk_3.png" id="1_6ebxu"]
+[ext_resource type="Script" uid="uid://cq0n5jgr7657x" path="res://scripts/character_select.gd" id="2_6ebxu"]
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_6ebxu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6ebxu")
