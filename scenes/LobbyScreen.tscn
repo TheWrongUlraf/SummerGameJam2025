@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://2h6s5sy2i333"]
+[gd_scene load_steps=4 format=3 uid="uid://2h6s5sy2i333"]
 
 [ext_resource type="Script" uid="uid://6rjw8bnb5e8t" path="res://scripts/lobby_screen.gd" id="1_mx6st"]
-[ext_resource type="Theme" uid="uid://bnivdma6helc8" path="res://themes/UI_theme.tres" id="2_0jx1e"]
+[ext_resource type="PackedScene" uid="uid://bae7u2awicke3" path="res://scenes/client_lobby_join_page.tscn" id="2_0mota"]
+[ext_resource type="PackedScene" uid="uid://ckhtjqve2dpvn" path="res://scenes/server_lobby_page.tscn" id="3_ov801"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -20,87 +21,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ClientControls" type="VBoxContainer" parent="VerticalBox"]
+[node name="ClientControls" parent="VerticalBox" instance=ExtResource("2_0mota")]
 layout_mode = 2
 
-[node name="NotConnected" type="VBoxContainer" parent="VerticalBox/ClientControls"]
+[node name="ServerControls" parent="VerticalBox" instance=ExtResource("3_ov801")]
 layout_mode = 2
-
-[node name="ServerIP" type="TextEdit" parent="VerticalBox/ClientControls/NotConnected"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme = ExtResource("2_0jx1e")
-text = "192.168.1."
-
-[node name="NameEdit" type="TextEdit" parent="VerticalBox/ClientControls/NotConnected"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme = ExtResource("2_0jx1e")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VerticalBox/ClientControls/NotConnected"]
-layout_mode = 2
-
-[node name="RoleLabel" type="RichTextLabel" parent="VerticalBox/ClientControls/NotConnected/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-theme = ExtResource("2_0jx1e")
-text = "Preffered role:"
-fit_content = true
-
-[node name="RoleSelector" type="OptionButton" parent="VerticalBox/ClientControls/NotConnected/HBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_0jx1e")
-selected = 2
-item_count = 3
-popup/item_0/text = "Spy"
-popup/item_0/id = 0
-popup/item_1/text = "Police"
-popup/item_1/id = 1
-popup/item_2/text = "Random"
-popup/item_2/id = 2
-
-[node name="ConnectButton" type="Button" parent="VerticalBox/ClientControls/NotConnected"]
-layout_mode = 2
-theme = ExtResource("2_0jx1e")
-text = "Connect"
-
-[node name="ErrorText" type="RichTextLabel" parent="VerticalBox/ClientControls/NotConnected"]
-visible = false
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
-text = "Could not connect to the server"
-fit_content = true
-
-[node name="Connected" type="VBoxContainer" parent="VerticalBox/ClientControls"]
-visible = false
-layout_mode = 2
-
-[node name="DisconnectButton" type="Button" parent="VerticalBox/ClientControls/Connected"]
-layout_mode = 2
-theme = ExtResource("2_0jx1e")
-text = "Disconnect"
-
-[node name="ServerControls" type="VBoxContainer" parent="VerticalBox"]
-layout_mode = 2
-
-[node name="IPToConnectTo" type="RichTextLabel" parent="VerticalBox/ServerControls"]
-layout_mode = 2
-size_flags_vertical = 0
-theme = ExtResource("2_0jx1e")
-text = "IP to connect to: "
-fit_content = true
-
-[node name="PlayersInTheLobby" type="RichTextLabel" parent="VerticalBox/ServerControls"]
-layout_mode = 2
-theme = ExtResource("2_0jx1e")
-text = "Players in the lobby"
-fit_content = true
-
-[node name="StartGameDebugButton" type="Button" parent="VerticalBox/ServerControls"]
-layout_mode = 2
-theme = ExtResource("2_0jx1e")
-text = "Start game [DEBUG]"
-
-[connection signal="pressed" from="VerticalBox/ClientControls/NotConnected/ConnectButton" to="." method="_on_connect_button_pressed"]
-[connection signal="pressed" from="VerticalBox/ClientControls/Connected/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
-[connection signal="pressed" from="VerticalBox/ServerControls/StartGameDebugButton" to="." method="_on_start_game_debug_button_pressed"]

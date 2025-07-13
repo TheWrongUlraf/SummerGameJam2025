@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckhtjqve2dpvn"]
+
+[ext_resource type="Theme" uid="uid://bnivdma6helc8" path="res://themes/UI_theme.tres" id="1_j8d22"]
+[ext_resource type="Script" uid="uid://b2bbkl4g0ueme" path="res://scripts/server_lobby_page.gd" id="1_xyswl"]
+
+[node name="ServerControls" type="VBoxContainer"]
+script = ExtResource("1_xyswl")
+
+[node name="IPToConnectTo" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_j8d22")
+text = "IP to connect to: "
+fit_content = true
+
+[node name="PlayersInTheLobby" type="RichTextLabel" parent="."]
+layout_mode = 2
+theme = ExtResource("1_j8d22")
+text = "Players in the lobby"
+fit_content = true
+
+[node name="StartGameDebugButton" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("1_j8d22")
+text = "Start game [DEBUG]"
+
+[connection signal="pressed" from="StartGameDebugButton" to="." method="_on_start_game_debug_button_pressed"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://bae7u2awicke3"]
+
+[ext_resource type="Script" uid="uid://bb7nrprgmgorc" path="res://scripts/client_lobby_join_page.gd" id="1_gccg6"]
+[ext_resource type="Theme" uid="uid://bnivdma6helc8" path="res://themes/UI_theme.tres" id="1_mfcuc"]
+
+[node name="ClientControls" type="VBoxContainer"]
+script = ExtResource("1_gccg6")
+
+[node name="NotConnected" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ServerIP" type="TextEdit" parent="NotConnected"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("1_mfcuc")
+text = "192.168.1."
+
+[node name="NameEdit" type="TextEdit" parent="NotConnected"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = ExtResource("1_mfcuc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NotConnected"]
+layout_mode = 2
+
+[node name="RoleLabel" type="RichTextLabel" parent="NotConnected/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("1_mfcuc")
+text = "Preffered role:"
+fit_content = true
+
+[node name="RoleSelector" type="OptionButton" parent="NotConnected/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_mfcuc")
+selected = 2
+item_count = 3
+popup/item_0/text = "Spy"
+popup/item_0/id = 0
+popup/item_1/text = "Police"
+popup/item_1/id = 1
+popup/item_2/text = "Random"
+popup/item_2/id = 2
+
+[node name="ConnectButton" type="Button" parent="NotConnected"]
+layout_mode = 2
+theme = ExtResource("1_mfcuc")
+text = "Connect"
+
+[node name="ErrorText" type="RichTextLabel" parent="NotConnected"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+text = "Could not connect to the server"
+fit_content = true
+
+[node name="Connected" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="DisconnectButton" type="Button" parent="Connected"]
+layout_mode = 2
+theme = ExtResource("1_mfcuc")
+text = "Disconnect"
+
+[connection signal="pressed" from="NotConnected/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="Connected/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
