@@ -178,7 +178,7 @@ func _check_win_conditions():
 					Lobby.teleport.rpc_id(player_id, player_id, teleport_target)
 
 					if stage > 0:
-						stage -= 1
+						#stage -= 1
 						progressBar.value = stage
 						_choose_next_objectives()
 					police_catches += 1
@@ -208,7 +208,7 @@ func _check_win_conditions():
 			stage += 1
 			progressBar.value = stage
 			if police_catches > 0:
-				police_catches -= 1
+				#police_catches -= 1
 				progressBarPolice.value = police_catches
 			rebelProgressAudio.play()
 			if stage >= max_stages:
