@@ -15,11 +15,11 @@ func _ready():
 
 
 func _on_stage_changed(stage, icon):
-	$RebelHud/Panels/ObjectivePanel/StageNumberText.text = "Stage " + str(stage + 1)
+	$RebelHud/Panels/RightControlsPanel/ObjectivePanel/StageNumberText.text = "Stage " + str(stage + 1)
 	if Lobby.client_get_role() == Lobby.ROLE_REBEL && icon != -1:
-		$RebelHud/Panels/ObjectivePanel/ObjectiveRow/ObjectiveIcon.texture = Lobby.EMOJI_TEXTURES[icon]
+		$RebelHud/Panels/RightControlsPanel/ObjectivePanel/ObjectiveRow/ObjectiveIcon.texture = Lobby.EMOJI_TEXTURES[icon]
 	else:
-		$RebelHud/Panels/ObjectivePanel/ObjectiveRow.hide()
+		$RebelHud/Panels/RightControlsPanel/ObjectivePanel/ObjectiveRow.hide()
 
 
 func _on_reveal_button_pressed() -> void:

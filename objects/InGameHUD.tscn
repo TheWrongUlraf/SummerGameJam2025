@@ -32,34 +32,6 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="ObjectivePanel" type="VBoxContainer" parent="RebelHud/Panels"]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="StageNumberText" type="RichTextLabel" parent="RebelHud/Panels/ObjectivePanel"]
-layout_mode = 2
-theme = ExtResource("2_nv1qt")
-text = "Stage 1"
-fit_content = true
-
-[node name="ObjectiveRow" type="HBoxContainer" parent="RebelHud/Panels/ObjectivePanel"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="ObjectiveText" type="RichTextLabel" parent="RebelHud/Panels/ObjectivePanel/ObjectiveRow"]
-custom_minimum_size = Vector2(170, 0)
-layout_mode = 2
-theme = ExtResource("2_nv1qt")
-text = "Current objective: "
-fit_content = true
-
-[node name="ObjectiveIcon" type="TextureRect" parent="RebelHud/Panels/ObjectivePanel/ObjectiveRow"]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-expand_mode = 2
-stretch_mode = 4
-
 [node name="RightControlsPanel" type="VBoxContainer" parent="RebelHud/Panels"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -69,6 +41,36 @@ size_flags_horizontal = 8
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 8
+
+[node name="ObjectivePanel" type="VBoxContainer" parent="RebelHud/Panels/RightControlsPanel"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="StageNumberText" type="RichTextLabel" parent="RebelHud/Panels/RightControlsPanel/ObjectivePanel"]
+layout_mode = 2
+theme = ExtResource("2_nv1qt")
+text = "Stage 1"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="ObjectiveRow" type="HBoxContainer" parent="RebelHud/Panels/RightControlsPanel/ObjectivePanel"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="ObjectiveText" type="RichTextLabel" parent="RebelHud/Panels/RightControlsPanel/ObjectivePanel/ObjectiveRow"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme = ExtResource("2_nv1qt")
+text = "Objective: "
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ObjectiveIcon" type="TextureRect" parent="RebelHud/Panels/RightControlsPanel/ObjectivePanel/ObjectiveRow"]
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 4
 
 [node name="NitroButton" type="TextureRect" parent="RebelHud/Panels/RightControlsPanel"]
 layout_mode = 2
