@@ -392,7 +392,7 @@ road_type = 1
 round_rotation = 90
 
 [node name="road" parent="roads" instance=ExtResource("2_626k8")]
-position = Vector2(491, -114)
+position = Vector2(491, -113)
 
 [node name="buildings" type="Node2D" parent="."]
 
